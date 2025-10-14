@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/favicons.png" type="image/x-icon">
+    <?php include("./includes/top.php")?>
+<?php
+$sql = "SELECT * FROM `mainemergencycase` LIMIT 1";
+$stmt = $DB->DB->prepare($sql);
+$stmt->execute();
+$row = $stmt->fetch();
+?>
+<head>
+    <title>
+        <?php 
+        if ($row && !empty($row['metatitle'])) {
+            echo htmlspecialchars($row['metatitle']);
+        } else {
+            echo "Default Title";
+        }
+        ?>
+    </title>
+    
+    <meta name="description" content="<?php 
+        if ($row && !empty($row['metadescription'])) {
+            echo htmlspecialchars($row['metadescription']);
+        } else {
+            echo "Default description here";
+        }
+    ?>">
+    
+    <meta name="keywords" content="<?php 
+        if ($row && !empty($row['metakeyword'])) {
+            echo htmlspecialchars($row['metakeyword']);
+        } else {
+            echo "default, keywords, here";
+        }
+    ?>">
+
+
+    <style>
+        /* Hide cases after 4 initially */
+        .hidden-case {
+            display: none;
+        }
+        /* Optional spacing fix */
+        .case-box {
+            margin-bottom: 1.5rem;
+        }
+        .emergency-box2{ display: block}
+        .emergency-box2 .case-content{ display: block; width: 100%}
+    </style>
+	
+	<meta name="google-site-verification" content="3Sv1MRaMdCRJOeW7TPio056Ow61KrbJntx7BmiHg08Y"/>
+	
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L3TTRSS3S1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L3TTRSS3S1');
+</script>
+</head>
+<body>
+    <?php include("./includes/header.php")?>
+
+    <?php
+        // Fetch emergency cases from the database
+        $sql = "SELECT * FROM `emergencycase` WHERE status='1' ORDER BY id DESC";
+        $stmt = $DB->DB->prepare($sql);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+        $totalCases = count($rows);
+    ?>
+
+    <div class="emergency-case-wrapper pb70">
+        <div class="container">
+            <h2 class="heading11 heading33 mt-4">Medical Emergency Cases</h2>
+
+            <!-- All cases in one row -->
+            <div class="row row-gap-4 mt-4">
+                <?php
+                $caseIndex = 0;
+                foreach($rows as $emergencycase){
+                    $caseIndex++;
+                    $extraClass = ($caseIndex > 4) ? 'hidden-case' : '';
+                ?>
+                <div class="col-lg-6 case-box <?php echo $extraClass; ?>">
+                    <div class="emergency-box emergency-box2">
+                    <div class="row">
+                           <div class="col-md-5">
+                            <img src="sahyogcare4u-admin/<?php echo htmlspecialchars($emergencycase['image']); ?>" class="img-fluid" alt="" />
+                        </div>
+                         <div class="col-md-7">
+                        <div class="case-content">
+                            <h2 class="case-name"><?php echo htmlspecialchars($emergencycase['name']); ?></h2>
+                            <div class="program-inner-text">
+                               <p><?php echo substr(($emergencycase['description']), 0, 150); ?>...</p>
+                            </div>
+                            <a href="emergencycase/<?php echo htmlspecialchars($emergencycase['slug']); ?>" class="emergency-box-button">Read More</a>
+                        </div>
+                        </div>      </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+
+            <!-- Show Load More button only if more than 4 cases -->
+            <?php if ($totalCases > 4) { ?>
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <button class="load-more btn btn-primary">Load More Cases</button>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+
+    <?php include("./includes/footer.php")?>
+    <?php include("./includes/script.php")?>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const loadMoreBtn = document.querySelector('.load-more');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', function() {
+                // Select all hidden cases and remove hidden class to reveal them
+                const hiddenCases = document.querySelectorAll('.hidden-case');
+                hiddenCases.forEach(caseBox => {
+                    caseBox.classList.remove('hidden-case');
+                });
+                // Hide the Load More button after click
+                loadMoreBtn.style.display = 'none';
+            });
+        }
+    });
+    </script>
+</body>
+</html>

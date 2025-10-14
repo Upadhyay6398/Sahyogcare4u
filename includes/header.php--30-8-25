@@ -1,0 +1,80 @@
+    <?php
+
+    $base_url = 'https://' . $_SERVER['HTTP_HOST'] . '/'; 
+        
+    ?>
+<header id="sticky-head">
+    <div class="top-layer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="log">
+                        <!--<img src="images/logo.png" alt="sahyog care logo">-->
+                        <a href="https://sahyogcare4u.org/"> 
+                        <img src="<?= BASE_URL ?>images/logo.png" alt="sahyog care logo"></a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-3 col-3 d-flex align-items-center justify-content-end">
+                    <div class="social">
+                        <ul>
+                            <li><a href="https://www.facebook.com/SahyogCare4You" target="_blank"><i
+                                        class="fa-brands fa-facebook-f"></i></a></li>
+                            <li> <a href="https://www.instagram.com/sahyogcare4you" target="_blank"><i
+                                        class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="https://twitter.com/SahyogCare4You" class="icoFacebook" title="Facebook"
+                                    target="_blank">
+                                    <i class="fa-brands fa-x-twitter"></i> </a></li>
+                            <li><a href="https://www.linkedin.com/company/sahyogcare4you/" target="_blank"><i
+                                        class="fa-brands fa-linkedin-in"></i></a></li>
+                            <li class="dbtn1"><a href="<?php echo $base_url?>donate.php">Donate</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 menu-main" style="padding-left:0;padding-right:0">
+        <div class="header">
+
+            <div class="stellarnav desktop dark">
+                <ul>
+                    <a href="#" class="close-menu full"><span class="icon-close"></span>Close</a>
+                    <li><a href="<?php echo $base_url;?>">Home</a>
+                    </li>
+                  <li><a href="<?php echo $base_url; ?>about-us.php">About Us</a></li>
+
+                    </li>
+                    <li class="has-sub"><a href="<?php echo $base_url;?>" class="hvr-bounce-to-right">PROGRAMS</a>
+                       <ul>
+    <?php
+    $sql = "SELECT * FROM `category` WHERE status='1' ORDER BY id ASC";
+    $stmt = $DB->DB->prepare($sql);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+   
+    foreach ($rows as $row) {
+
+        $slug = $row['slug'];
+        $title = htmlspecialchars($row['name']); // Escape the category name to avoid XSS
+        echo "<li><a href='" .$base_url . "$slug'>$title</a></li>";
+    }
+    ?>
+</ul>
+
+                        <a class="dd-toggle" href="#"><span class="icon-plus"></span></a>
+                    </li>
+
+
+                    <li><a href="<?php echo $base_url;?>contact-us.php">Contact Us</a>
+                    </li>
+                    <li><a href="<?php echo $base_url.'urgent-attention.php'?>">Emergency Cases</a></li>
+                    <li><a href="<?php echo $base_url.'information-desk.php'?>">Information Desk</a>
+                    </li>
+                    <li class="menu-btn"><a href="<?php echo $base_url.'createfundraiser.php'?>">Create a Fundraiser</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

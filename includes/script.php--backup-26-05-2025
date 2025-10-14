@@ -1,0 +1,311 @@
+        <script src="<?php echo BASE_URL; ?>js/jquery.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>js/stellarnav.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+    <script>
+        jQuery( document ).ready( function ( $ ) {
+            jQuery( '.stellarnav' ).stellarNav( {
+                theme: 'dark',
+                breakpoint:991,
+    
+            } );
+        } );
+    </script>
+<script>
+    var swiper = new Swiper(".heroslide", {
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      loop : true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item-custom');
+        const dots = document.querySelectorAll('.dot-custom');
+        const carousel = document.querySelector('.carousel-custom'); // Ensure carousel is correctly selected
+
+        if (slides.length > 0 && dots.length > 0 && carousel) { // Check if elements exist
+
+            function updateSlides() {
+                slides.forEach((slide, index) => {
+                    slide.classList.remove('carousel-item-active', 'carousel-item-left', 'carousel-item-right');
+                    dots.forEach(dot => dot.classList.remove('active'));
+
+                    // Set the active class for the current slide
+                    if (index === currentSlide) {
+                        slide.classList.add('carousel-item-active'); // Active slide
+                        dots[currentSlide].classList.add('active'); // Active dot
+                    } else if (index === (currentSlide - 1 + slides.length) % slides.length) {
+                        slide.classList.add('carousel-item-left'); // Previous slide
+                    } else if (index === (currentSlide + 1) % slides.length) {
+                        slide.classList.add('carousel-item-right'); // Next slide
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length; // Loop to the first slide
+                updateSlides();
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Loop to the last slide
+                updateSlides();
+            }
+
+            function goToSlide(index) {
+                currentSlide = index; // Set current slide to the index
+                updateSlides();
+            }
+
+            /* Autoplay feature */
+            let autoplayInterval;
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, 3000); // Change slides every 3 seconds
+            }
+
+            function stopAutoplay() {
+                clearInterval(autoplayInterval);
+            }
+
+            /* Swipe functionality for touch devices */
+            let startX;
+
+            carousel.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            });
+
+            carousel.addEventListener('touchend', (e) => {
+                let endX = e.changedTouches[0].clientX;
+                if (startX > endX + 50) {
+                    nextSlide(); // Swipe left
+                } else if (startX < endX - 50) {
+                    prevSlide(); // Swipe right
+                }
+            });
+
+            // Attach button click events
+            const nextButton = document.querySelector('.arrow-next');
+            const prevButton = document.querySelector('.arrow-prev');
+
+            if (nextButton) {
+                nextButton.addEventListener('click', nextSlide); // Next slide on button click
+            }
+
+            if (prevButton) {
+                prevButton.addEventListener('click', prevSlide); // Previous slide on button click
+            }
+
+            // Initialize carousel
+            updateSlides();
+            startAutoplay(); // Start autoplay when the carousel is initialized
+        } else {
+            console.error("Carousel elements are not found.");
+        }
+    });
+</script>
+<script>
+    var swiper = new Swiper(".test-swiper", {
+      slidesPerView: 1,
+      spaceBetween: 50,
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+  <script>
+    var swiper = new Swiper(".partner-swipe", {
+      // slidesPerView: 5,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      loop : true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
+  <script>
+    var swiper = new Swiper(".news-swipe", {
+      // slidesPerView: 4,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      loop : true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      },
+    });
+  </script>
+
+  <script>
+    var swiper = new Swiper(".team-swipe", {
+      slidesPerView: 4,
+      spaceBetween: 30,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+
+  <script>
+    var swiper = new Swiper(".info-award-swipe", {
+      slidesPerView: 4,
+      spaceBetween: 40,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+  
+    });
+  </script>
+
+  <script>
+    $(document).ready(function(){
+	
+	$('ul.tabs li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+  </script>
+     <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#enquiryForm').on('submit', function(e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    var formData = $(this).serialize();
+
+                    $.ajax({
+                        url: 'ajax/send-enquiry.php',
+                        type: 'POST',
+                        data: formData,
+                        dataType: 'json',
+                        beforeSend: function() {
+                            $('.contact-btn-submit').val('Sending...').prop('disabled', true);
+                        },
+                        success: function(response) {
+                            if (response.status === 'success') {
+                             window.location.href = "thanks.php";  // Redirect after success
+                                $('#enquiryForm')[0].reset();
+                            } else {
+                                alert('Error: ' + response.message);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('An error occurred. Please try again.');
+                            console.log(error);
+                        },
+                        complete: function() {
+                            $('.contact-btn-submit').val('Submit').prop('disabled', false);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+
+<script>
+    var swiper = new Swiper(".child-labour", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop : true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
+
+  <script>
+    var swiper = new Swiper(".ration-slider", {
+      slidesPerView: 2,
+      spaceBetween: 5,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop : true
+    });
+  </script>

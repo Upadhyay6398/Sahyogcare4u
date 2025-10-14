@@ -1,0 +1,28 @@
+[13-Oct-2025 11:58:55 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"079caf13-e49a-4a46-b642-8d27f8876008"}
+[13-Oct-2025 11:58:56 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"ecb08fde-a686-4e89-9f33-ce764125d8b8"}
+[13-Oct-2025 11:58:57 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"3350250f-62c1-483e-ab0d-5539447fc089"}
+[13-Oct-2025 12:00:08 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"a899a8bb-248f-4819-b7d0-d87c832c6957"}
+[13-Oct-2025 12:01:22 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 97
+[13-Oct-2025 12:01:22 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 105
+[13-Oct-2025 12:01:22 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 113
+[14-Oct-2025 11:32:05 Asia/Calcutta] PHP Warning:  Undefined array key "ADMIN_USER_NAME" in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/include/header.php on line 44
+[14-Oct-2025 11:32:05 Asia/Calcutta] PHP Warning:  Undefined array key "ADMIN_USER_NAME" in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/include/header.php on line 56
+[14-Oct-2025 11:33:25 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"9b361a15-4251-475a-94ef-e9694702563a"}
+[14-Oct-2025 11:33:26 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"60f2234e-21af-4fec-8f96-882498416882"}
+[14-Oct-2025 11:33:27 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"349d2e40-e3eb-4d52-9217-e2b3765e17c9"}
+[14-Oct-2025 11:44:41 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 97
+[14-Oct-2025 11:44:41 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 105
+[14-Oct-2025 11:44:41 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 113
+[14-Oct-2025 11:48:10 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"f626429c-32a9-4c5e-825a-f5247c6355c8"}
+[14-Oct-2025 11:48:11 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"3245bd97-45d0-41c8-b361-aaec2ab65481"}
+[14-Oct-2025 11:48:11 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"93381810-8bca-4411-b509-7e812d37927c"}
+[14-Oct-2025 11:48:12 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"70b34e95-f513-4034-91ac-097b834fa2de"}
+[14-Oct-2025 11:51:50 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"acbb6749-9ca6-476b-9561-80e4026b365c"}
+[14-Oct-2025 11:51:51 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"fdfaee19-110d-41bf-89ef-8faa98a4a3c2"}
+[14-Oct-2025 11:51:52 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"feefca0e-61ce-4daa-b473-ed4f27108663"}
+[14-Oct-2025 11:51:52 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"c74a5964-a3e1-4a15-afe5-5b21ab5e279e"}
+[14-Oct-2025 11:51:53 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"73be1d9f-b9c5-465b-896a-f9741bbaade7"}
+[14-Oct-2025 11:54:47 Asia/Calcutta] AiSensy WhatsApp API Response - HTTP Code: 200, Response: {"success":"true","submitted_message_id":"f4c242dd-69bd-4c1b-84f1-a7b70b487972"}
+[14-Oct-2025 11:55:35 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 97
+[14-Oct-2025 11:55:35 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 105
+[14-Oct-2025 11:55:35 Asia/Calcutta] PHP Deprecated:  number_format(): Passing null to parameter #1 ($num) of type float is deprecated in /home2/sahyogcare4u/public_html/sendWhatsapp_xhd281/manage-whatsapp.php on line 113

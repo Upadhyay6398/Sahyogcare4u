@@ -1,0 +1,10 @@
+[23-Aug-2025 22:58:02 Asia/Calcutta] PHP Warning:  Undefined variable $name in /home2/sahyogcare4u/public_html/ajax/newsletter.php on line 63
+[23-Aug-2025 22:58:02 Asia/Calcutta] PHP Deprecated:  preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /home2/sahyogcare4u/public_html/lib/class.phpmailer.php on line 765
+[23-Aug-2025 22:58:02 Asia/Calcutta] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/sahyogcare4u/public_html/lib/Mail.php on line 246
+[06-Sep-2025 14:44:00 Asia/Calcutta] PHP Warning:  Undefined variable $name in /home2/sahyogcare4u/public_html/ajax/newsletter.php on line 63
+[06-Sep-2025 14:44:00 Asia/Calcutta] PHP Deprecated:  preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /home2/sahyogcare4u/public_html/lib/class.phpmailer.php on line 765
+[06-Sep-2025 14:44:00 Asia/Calcutta] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/sahyogcare4u/public_html/lib/Mail.php on line 247
+[22-Sep-2025 22:49:34 Asia/Calcutta] PHP Warning:  Undefined variable $name in /home2/sahyogcare4u/public_html/ajax/newsletter.php on line 63
+[22-Sep-2025 22:49:34 Asia/Calcutta] PHP Deprecated:  preg_replace(): Passing null to parameter #3 ($subject) of type array|string is deprecated in /home2/sahyogcare4u/public_html/lib/class.phpmailer.php on line 765
+[22-Sep-2025 22:49:34 Asia/Calcutta] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home2/sahyogcare4u/public_html/lib/Mail.php on line 246
+[07-Oct-2025 20:51:53 Asia/Calcutta] PHP Warning:  Undefined variable $response in /home2/sahyogcare4u/public_html/ajax/send-enquiry.php on line 98

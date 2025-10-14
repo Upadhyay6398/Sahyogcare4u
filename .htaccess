@@ -1,0 +1,93 @@
+# Enable Rewrite Engine
+RewriteEngine On
+# --- Custom URL routes under /new-website/ ---
+RewriteRule ^subprogram/([a-zA-Z0-9-]+)/?$ subprogram.php?slug=$1 [L,QSA]
+RewriteRule ^emergencycase/([a-zA-Z0-9-]+)/?$ emergencycase.php?slug=$1 [L,QSA]
+RewriteRule ^account/([a-zA-Z0-9-]+)/?$ account-info.php?slug=$1 [L,QSA]
+RewriteRule ^gallery-details/([a-zA-Z0-9-]+)/?$ gallery-details.php?slug=$1 [L,QSA]
+RewriteRule ^sub/([a-zA-Z0-9-]+)/?$ gallery.php?subprogram_id=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9-]+)/?$ program.php?slug=$1 [L,QSA]
+
+# --- Redirect /new-website/* to same path without /new-website/ ---
+RewriteCond %{REQUEST_URI} ^/new-website/(.*)$
+RewriteRule ^new-website/(.*)$ /$1 [R=301,L]
+
+# --- Specific ID-based redirections ---
+RewriteCond %{THE_REQUEST} \s/program\.php\?id=cDE= [NC]
+RewriteRule ^program\.php$ /child-protection-and-rehabilitation? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/URGENT-ATTENTIONS\.php$ [NC]
+RewriteRule ^.*$ https://sahyogcare4u.org/urgent-attention.php [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=NA==$ [NC]
+RewriteRule ^subprogram\.php$ /subprogram/child-rehabilitation? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=cDU=$ [NC]
+RewriteRule ^program\.php$ /child-education-programs? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=MTE=$ [NC]
+RewriteRule ^subprogram\.php$ /women-livelihood? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=cDM=$ [NC]
+RewriteRule ^program\.php$ /women-livelihood? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=cDQ=$ [NC]
+RewriteRule ^program\.php$ /rural-and-urban-development-programs? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=OA==$ [NC]
+RewriteRule ^subprogram\.php$ /armed-forces-welfare? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/subprogram\.php\?id=Nw== [NC]
+RewriteRule ^subprogram\.php$ /subprogram/differently-abled-jawans? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=cDc=$ [NC]
+RewriteRule ^program\.php$ /medical-and-health-programs? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=MjE=$ [NC]
+RewriteRule ^subprogram\.php$ https://www.sahyogcare4u.org/subprogram/skill-development? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=MjM=$ [NC]
+RewriteRule ^subprogram\.php$ /subprogram/financial-digital-literacy? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^id=Ng==$ [NC]
+RewriteRule ^subprogram\.php$ /subprogram/jawans-and-families? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^utm_source=chatgpt\.com$ [NC]
+RewriteRule ^ArmedForcesWelfare\.php$ https://sahyogcare4u.org/armed-forces-welfare? [L,R=301]
+
+# --- Enable browser caching ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+</IfModule>
+
+# --- Enable Gzip compression ---
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml application/xhtml+xml application/rss+xml application/atom+xml image/svg+xml
+</IfModule>
+
+# --- PHP handler from cPanel ---
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahyog Care For You - Our mission is to rescue, rehabilitate, and empower children with education and a safe
+        environment.
+  <link rel="icon" href="images/favicons.png" type="image/x-icon">
+    </title>
+    <?php include("./includes/top.php") ?>
+    <style>
+        .donation-list li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .addtocart {
+            color: blue;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        table {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #999 !important;
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        /* td{
+            border: 1px solid #999 !important;
+
+        } */
+         .gallery-img{
+            padding: 5px;
+            border: 1px solid #999 !important;
+         }
+         .gallery-sec{
+            margin-top: 80px;
+         }
+             .hidden-gallery { display: none; opacity: 0; transform: translateY(20px); }
+    .fade-in { display: block !important; opacity: 1 !important; transform: translateY(0) !important; }
+
+    .dbtn1{
+        border: none !important;
+    }
+    </style>
+</head>
+
+<body>
+    <?php include("./includes/header.php") ?>
+    <div class="contact-banner-sec mt-4">
+        <h1 class="text-center text-bold child-labour-heading">Carrying the weight of tools instead of a schoolbag <br>
+            — but your support can change this</h1>
+    </div>
+
+
+    <div class="impact-sec child-labour-head">
+        <div class="impact-img top">
+            <img src="images/torn.png" class="img-fluid w-100" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="program-content">
+                        <div class="program-image-cover">
+                            <div class="swiper child-labour">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider01.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider02.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider03.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider04.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider05.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider06.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider07.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider08.jpg" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <img src="images/ngo-slider09.jpg" class="img-fluid" alt="">
+                                    </div>
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                        <?php
+// All URLs to be included
+$slugs = [
+    "/child-labour2.php",
+    
+ "/child-labour2.phputm_sourcefacebook_and_instagramutm_mediumvideoutm_campaignretargetutm_termchild_rescuefbclidIwY2xjawLkEIhleHRuA2FlbQIxMABicmlkETFaeUpjNnZPbEpvamZDRjdZAR5j_Sn73iyOkC4YjW7sszfXeo60dJZA-siUdxxVhwWa5tfAl97uP7WM_Xd_jg_aem_7vumyaEgg6JXil0yY-_FqA",
+     "/child-labour2.phputm_sourcefacebook_instagramutm_mediumvideoutm_campaigntrafficutm_termchild_rescue_and_rehabilitationutm_contentdonate_nowfbclidIwY2xjawLhkcVleHRuA2FlbQIxMABicmlkETFXRkFQZEtVdkJYTWM2dFBPAR5kybtNbqmrqiEHA1SdIwwYccx10I-MQPQxQT7E0lMtl59gxvbgUz_4TT71lQ_aem_PDbv-wUoM3nCH50NOJsylw",
+     "/child-labour2.phputm_sourcefacebook_and_instagramutm_mediumvideoutm_campaignsales_conversionutm_termchild_rescueutm_id120227737921580082utm_content120227737922280082fbclidPAZXh0bgNhZW0BMABhZGlkAasjaWXcE4IBp1I_-_JYB4rWwo19DdmvC7m7NfSmRktd95ewFRVniCGyV-FZeuPgI82GpMMD_aem_hxfx-cSPkeG0Eq1UQVqq4g"
+];
+
+// Base and goal amount (combined)
+$base_amount = 120893; // Set as needed
+$goal_amount = 800000; // Set as needed
+
+// Format function remains the same
+function format_in_indian_style($number) {
+    $number = (string) $number;
+    $after_decimal = '';
+
+    if (strpos($number, '.') !== false) {
+        list($number, $after_decimal) = explode('.', $number);
+        $after_decimal = '.' . $after_decimal;
+    }
+
+    $last3 = substr($number, -3);
+    $rest = substr($number, 0, -3);
+
+    if ($rest != '') {
+        $rest = preg_replace("/\B(?=(\d{2})+(?!\d))/", ",", $rest);
+        $number = $rest . ',' . $last3;
+    } else {
+        $number = $last3;
+    }
+
+    return $number . $after_decimal;
+}
+
+// Fetch combined donation from DB
+$total_db_raised = 0;
+
+if (!empty($slugs)) {
+    $placeholders = implode(',', array_fill(0, count($slugs), '?'));
+    $payment_sql = "SELECT SUM(amount) as total_raised FROM payments WHERE `source` IN ($placeholders) AND payment_status = 'success'";
+
+    try {
+        $payment_stmt = $DB->DB->prepare($payment_sql);
+        foreach ($slugs as $index => $slug) {
+            $payment_stmt->bindValue($index + 1, $slug, PDO::PARAM_STR);
+        }
+        $payment_stmt->execute();
+
+        $payment_data = $payment_stmt->fetch(PDO::FETCH_ASSOC);
+        $total_db_raised = $payment_data['total_raised'] ?? 0;
+    } catch (PDOException $e) {
+        echo "Database error: " . $e->getMessage();
+    }
+}
+
+$total_raised = $base_amount + $total_db_raised;
+$percent_raised = $goal_amount > 0 ? min(100, round(($total_raised / $goal_amount) * 100)) : 0;
+?>
+
+                        <!-- Display the single combined progress bar -->
+                        <div class="col-md-12 px-5">
+                            <div class="raiser-bar">
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar" role="progressbar"
+                                        style="width: <?php echo $percent_raised; ?>%;
+                        background-color: <?php echo ($percent_raised < 30) ? '#dc3545' : (($percent_raised < 70) ? '#ffc107' : '#28a745'); ?>;"
+                                        aria-valuenow="<?php echo $percent_raised; ?>" aria-valuemin="0"
+                                        aria-valuemax="100">
+                                        <?php echo $percent_raised; ?>%
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="raised-money-data mt-2">
+                                <p>
+                                    <span>₹
+                                        <?php echo format_in_indian_style($total_raised); ?>
+                                    </span>
+                                    <i>raised of ₹
+                                        <?php echo format_in_indian_style($goal_amount); ?> goal
+                                    </i>
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="program-inner-text">
+                            <p>Child labour and bonded labour are critical human rights issues that rob children of
+                                their childhood, education, and dignity, often forcing them into hazardous working
+                                conditions.Recognizing this grave reality, Sahyog Care For You has been tirelessly
+                                working since 2019 to rescue these vulnerable children and rehabilitate them back into
+                                mainstream society.</p>
+
+                            <p>To date, our organization has successfully conducted 174 rescue operations, freeing 3166
+                                children (2376 boys and 790 girls) from exploitative situations. In these cases, over
+                                900 employers and traffickers have been named in FIRs.</p>
+
+                            <p>Beyond rescue, Sahyog Care For You is committed to securing the futures of these
+                                children, having helped them receive approximately ₹7 Crore in back wages. During their
+                                rehabilitation, we have also provided essential ration kits to around 1500 needy
+                                families of rescued children.</p>
+
+                            <p>We are proud to report that 40-50% of these rescued children have been enrolled in
+                                schools and vocational training courses, paving the way for a brighter future.
+                                Furthermore, Sahyog Care For You actively assists the families of rescued children in
+                                linking with relevant government schemes and facilitating necessary documentation,
+                                ensuring comprehensive support for their reintegration.</p>
+                        </div>
+
+                        <div class="m-4">
+                            <video loop controls class="w-100">
+                                <source src="images/child-labour-vid.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <div class="news-inner-sec mt-5">
+                        <div class="row row-gap-3">
+                            <div class="bulletin-board">
+                                <div class="cork-texture"></div>
+                                <!-- Clippings will be dynamically added here -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h4 class="text-center mt-4 mb-4"> For authentication certificates, contact us at <a
+                            href="mailto:sahyogcare45@gmail.com">sahyogcare45@gmail.com</a></h4>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="program-sidebar">
+                        <div class="program-sidebar-head">
+                            <h2>Donate Now</h2>
+                        </div>
+                        <div class="col-md-12 text-center mb-4">
+                            <span
+                                style="padding: 5px; background-color: #1ca63a; border-radius: 10px; text-align: right; color: #fff; margin-bottom: 20px;"
+                                title="80G Tax Benefits Available for INR Donations">Tax Benefit</span>
+
+                            <span
+                                style="padding: 5px; background-color: orange; border-radius: 10px; text-align: right; color: #fff; margin-bottom: 20px; margin-left : 20px;"><a
+                                    style="color: #fff; text-decoration: none;" href="#certificates">Verified
+                                    NGO</a></span>
+
+                        </div>
+                        <ul class="donation-list">
+                            <li data-name="1 Child's Education (1 Month)" data-price="700">
+                                <img src="images/book-icon.png" alt="child's education"> 1 child's education for 1
+                                month<br>
+                                <span>₹ 700/-</span>
+                                <span class="addtocart">ADD +</span>
+                                <span class="quantity-controls" style="display:none;">
+                                    <button class="decrease btn btn-warning">-</button>
+                                    <span class="qty">1</span>
+                                    <button class="increase btn btn-warning">+</button>
+                                </span>
+                            </li>
+                            <li data-name="Education & Healthcare (1 Month)" data-price="1700">
+                                <img src="images/medical-book.png" alt="education & healthcare">1-month education &
+                                healthcare for 1 child<br>
+                                <span>₹ 1700/-</span>
+                                <span class="addtocart">ADD +</span>
+                                <span class="quantity-controls" style="display:none;">
+                                    <button class="decrease btn btn-warning">-</button>
+                                    <span class="qty">1</span>
+                                    <button class="increase btn btn-warning">+</button>
+                                </span>
+                            </li>
+                            <li data-name="Family Ration (1 Month)" data-price="3500">
+                                <img src="images/family-ration.png" alt="family ration">1-month family ration (for 4–5
+                                members)<br>
+                                <span>₹ 3500/-</span>
+                                <span class="addtocart">ADD +</span>
+                                <span class="quantity-controls" style="display:none;">
+                                    <button class="decrease btn btn-warning">-</button>
+                                    <span class="qty">1</span>
+                                    <button class="increase btn btn-warning">+</button>
+                                </span>
+                            </li>
+                            <li data-name="Sponsor 1 Year Education" data-price="7000" class="highlight-section">
+                                <img src="images/education-child.png" alt="education for a child"> Sponsor one year of
+                                education for a child<br>
+                                <span>₹ 7000/-</span>
+                                <span class="addtocart">ADD +</span>
+                                <span class="quantity-controls" style="display:none;">
+                                    <button class="decrease btn btn-warning">-</button>
+                                    <span class="qty">1</span>
+                                    <button class="increase btn btn-warning">+</button>
+                                </span>
+                            </li>
+                            <li data-name="Ration + Stationery + Medical (1 Month)" data-price="10000">
+                                <img src="images/ration-stationery.png" alt="ration, stationery & medical"> 1-month
+                                ration, stationery & medical for 1 family<br>
+                                <span>₹ 10000/-</span>
+                                <span class="addtocart">ADD +</span>
+                                <span class="quantity-controls" style="display:none;">
+                                    <button class="decrease btn btn-warning">-</button>
+                                    <span class="qty">1</span>
+                                    <button class="increase btn btn-warning">+</button>
+                                </span>
+                            </li>
+                        </ul>
+
+
+
+
+
+                        <div class="product-slider-main">
+                            <h4>You Can Select &amp; Donate <br>
+                                individual Ration&nbsp;Item</h4>
+                            <div class="swiper ration-slider">
+                                <div class="swiper-wrapper">
+
+                                    <div class="swiper-slide" data-name="Flour 10kg" data-price="449">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/aata.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Atta <br> 10kg</p>
+                                            <hr>
+                                            <p>₹449/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-slide" data-name="Arhar dal 1kg" data-price="160">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/arhar-dal.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Arhar dal <br> 1kg</p>
+                                            <hr>
+                                            <p>₹160/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-slide" data-name="Malka 1kg" data-price="135">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/malka-daal.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Malka <br> 1kg</p>
+                                            <hr>
+                                            <p>₹135/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="chana dal 1kg" data-price="155">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/channa-dal.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>chana dal <br> 1kg</p>
+                                            <hr>
+                                            <p>₹155/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Urad dal 1kg" data-price="180">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/urad-daal.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Urad dal <br> 1kg</p>
+                                            <hr>
+                                            <p>₹180/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Moong dal 1kg" data-price="150">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/moong-daal.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Moong dal <br> 1kg</p>
+                                            <hr>
+                                            <p>₹150/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Jeera 200g" data-price="180">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/jeera-powder.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Jeera <br> 200g</p>
+                                            <hr>
+                                            <p>₹180/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Dhaniya Powder 200g" data-price="70">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/dhaniya-powder.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Dhaniya Powder <br> 200g</p>
+                                            <hr>
+                                            <p>₹70/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Haldi powder 200g" data-price="129">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/haldi-powder.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Haldi powder <br> 200g</p>
+                                            <hr>
+                                            <p>₹129/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Mirchi Powder 200g" data-price="70">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/mirchi-powder.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Mirchi Powder <br> 200g</p>
+                                            <hr>
+                                            <p>₹70/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Garam masala 200g" data-price="145">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/garam-masala.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Garam masala <br> 200g</p>
+                                            <hr>
+                                            <p>₹145/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Mogra Rice 10kg" data-price="535">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/mogra-rice.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Mogra Rice <br> 10kg</p>
+                                            <hr>
+                                            <p>₹535/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Salt 1kg" data-price="30">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/salt.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Salt <br> 1kg</p>
+                                            <hr>
+                                            <p>₹30/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Sugar 2.5kg" data-price="180">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/sugar.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Sugar <br> 2.5kg</p>
+                                            <hr>
+                                            <p>₹180/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Bath soap pack of 4" data-price="130">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/soap.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Bath soap <br> pack of 4</p>
+                                            <hr>
+                                            <p>₹130/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="swiper-slide" data-name="Tooth Paste 1 Qty." data-price="130">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/tooth-paste.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Tooth Paste <br> 1 Qty.</p>
+                                            <hr>
+                                            <p>₹130/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Tooth Brush pack of 4" data-price="110">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/tooth-brush.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Tooth Brush <br> pack of 4</p>
+                                            <hr>
+                                            <p>₹110/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-slide" data-name="Besan 2kg" data-price="210">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/besan.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Besan <br> 2kg</p>
+                                            <hr>
+                                            <p>₹210/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-slide" data-name="Tea Powder 500g" data-price="280">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/tea.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Tea Powder <br> 500g</p>
+                                            <hr>
+                                            <p>₹280/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="swiper-slide" data-name="Mustard Oil 1 litre" data-price="170">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/mustard-oil.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Mustard Oil <br> 1 litre</p>
+                                            <hr>
+                                            <p>₹170/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="swiper-slide" data-name="Detergent powder 1kg" data-price="100">
+                                        <div class="testimonial-item">
+                                            <div class="cart-product">
+                                                <img src="images/detergent.jpg" class="img-fluid" alt="Flour 10kg">
+                                            </div>
+                                            <p>Detergent powder <br> 1kg</p>
+                                            <hr>
+                                            <p>₹100/- Unit</p>
+                                            <span class="addtocart2" style="cursor:pointer; color:blue;">ADD +</span>
+                                            <span class="quantity-controls" style="display:none; margin-left: 10px;">
+                                                <button class="decrease btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">-</button>
+                                                <span class="qty" style="margin: 0 8px;">1</span>
+                                                <button class="increase btn btn-warning"
+                                                    style="padding:2px 6px; cursor:pointer;">+</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- <div class="swiper-pagination"></div> -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+
+
+                        <!-- Cart Display Table -->
+                        <h3>Your Donation Cart</h3>
+                        <table id="cartTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Price (₹)</th>
+                                    <th>Qty.</th>
+                                    <th>Subtotal (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" style="text-align:right;"><strong>Total:</strong></td>
+                                    <td id="totalAmount">₹ 0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <form method="post" id="donation-btn" data-parsley-validate action="generateCCHash.php">
+                            <input type="hidden" name="source" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
+                            <?php  
+                              $utm_source = isset($_GET['utm_source']) ? htmlspecialchars($_GET['utm_source']) : '';
+                            ?>
+
+                            <?php  
+                              $utm_campaign = isset($_GET['utm_campaign']) ? htmlspecialchars($_GET['utm_campaign']) : '';
+              
+                              
+                            
+                            ?>
+                            <input type="hidden" name="utm_source" value="<?php echo $utm_source; ?>">
+                            <input id="amountInput" name="amount" class="form-control program-input mt-3 mb-3"
+                                placeholder="Custom Amount" type="text" inputmode="numeric" data-parsley-type="digits"
+                                data-parsley-pattern-message="Please enter a valid Amount" data-parsley-required="true"
+                                autocomplete="off" oninput="this.value = this.value.replace(/\D/g, '')">
+
+                            <input id="name" name="name" class="form-control program-input mb-3" placeholder="Name"
+                                type="text" required>
+
+                            <input id="mobile" name="mobile" class="form-control program-input mb-3"
+                                placeholder="Mobile Number" inputmode="numeric" data-parsley-type="digits" type="text"
+                                maxlength="10" minlength="10"
+                                data-parsley-pattern-message="Please enter a valid Mobile Number"
+                                data-parsley-required="true" autocomplete="off"
+                                oninput="this.value = this.value.replace(/\D/g, '')">
+
+                            <input id="email" name="email" class="form-control program-input mb-3" placeholder="Email"
+                                type="email" required>
+
+                            <input id="name" name="pan_number" class="form-control program-input mb-3"
+                                placeholder="PAN Number" type="text" >
+
+<!--<p><strong>*Required for tax exemption</strong></p>-->
+
+                            <div class="secure-payments-text secure-payments-text-program mx-3 mt-2">
+                                <span class="secure-payments-icon">🔒</span> Your payments are secured with CCAvenue
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="sidebar-submit-btn proram-submit ">UPI Donations</button>
+                                <button type="submit" class="sidebar-submit-btn proram-submit mt-3">Credit Card/Debit Card/Net Banking</button>
+                                
+                            </div>
+                        </form>
+                        <div class="col-md-12 mt-3">
+                            <div class="borderbox">
+                                <div class="row">
+                                    <div class="col-3 d-flex align-items-center">
+                                        <a style="color: #2f2f2f;" class="donate-whatsapp"
+                                            href="https://api.whatsapp.com/send?phone=918860989205&amp;text=&amp;source=&amp;data=">
+                                            <img class="w-100" src="https://sahyogcare4u.org/images/whatsapp3.png"
+                                                alt="WhatsApp">
+                                        </a>
+                                    </div>
+                                    <div class="col-9 ps-0">
+                                        <p class="mb-0">If you wish to know more about the case, contact us on
+                                            WhatsApp at
+                                            <a style="color: #2f2f2f; display: inline-block; text-decoration: underline;"
+                                                class="donate-whatsapp"
+                                                href="https://api.whatsapp.com/send?phone=918860989205&amp;text=&amp;source=&amp;data=">
+                                                8860989205
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="borderbox mb-2 mt-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p class="mb-0">Call us at
+                                            <a href="tel:+918860989205" class="text-dark">+91-8860989205</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="side-bar-qr mt-3">
+                                <img src="images/sahyogcare4u-qr-child-labour.jpeg" alt="" style='display:none'>
+
+                                <div class="share-container">
+                                    <h2>Each share helps</h2>
+                                    <div class="share-buttons">
+                                        <a href="https://web.whatsapp.com/send?text=Help%20Saras Khare%20Fight%20Congenital heart defect%20Donate%20now%20on%20website:%20https://www.sahyogcare4u.org/emergencycase.php?id=MzQzNDM0Mjg="
+                                            target="_blank" class="share-button whatsapp">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="white">
+                                                <path
+                                                    d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.sahyogcare4u.org/emergencycase.php?id=MzQzNDM0Mjg="
+                                            target="_blank" class="share-button facebook">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="white">
+                                                <path
+                                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?url=https://www.sahyogcare4u.org/emergencycase.php?id=MzQzNDM0Mjg=&amp;text=Help%20Saras Khare%20Fight%20Congenital heart defect%20Donate%20now%20on%20website:"
+                                            target="_blank" class="share-button twitter">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="white">
+                                                <path
+                                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                        <a href="https://www.instagram.com/sahyogcare4you/" target="_blank"
+                                            class="share-button twitter">
+                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24"
+                                                height="24" viewBox="0 0 30 30" style="fill:#FFFFFF;">
+                                                <path
+                                                    d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="impact-img bottom">
+                <img src="images/torn.png" class="img-fluid w-100" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="gallery-sec">
+        <div class="container">
+   <div class="row row-gap-3" id="gallery-container">
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-0.jpg" data-fancybox="group">
+            <img src="images/gallery-0.jpg" class="img-fluid w-100" alt="Gallery Image 0">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-01.jpg" data-fancybox="group">
+            <img src="images/gallery-01.jpg" class="img-fluid w-100" alt="Gallery Image 1">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-02.jpg" data-fancybox="group">
+            <img src="images/gallery-02.jpg" class="img-fluid w-100" alt="Gallery Image 2">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-03.jpg" data-fancybox="group">
+            <img src="images/gallery-03.jpg" class="img-fluid w-100" alt="Gallery Image 3">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-04.jpg" data-fancybox="group">
+            <img src="images/gallery-04.jpg" class="img-fluid w-100" alt="Gallery Image 4">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-06.jpg" data-fancybox="group">
+            <img src="images/gallery-06.jpg" class="img-fluid w-100" alt="Gallery Image 6">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block">
+        <div class="gallery-img">
+          <a href="images/gallery-07.jpg" data-fancybox="group">
+            <img src="images/gallery-07.jpg" class="img-fluid w-100" alt="Gallery Image 7">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-08.jpg" data-fancybox="group">
+            <img src="images/gallery-08.jpg" class="img-fluid w-100" alt="Gallery Image 8">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-09.jpg" data-fancybox="group">
+            <img src="images/gallery-09.jpg" class="img-fluid w-100" alt="Gallery Image 9">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-10.jpg" data-fancybox="group">
+            <img src="images/gallery-10.jpg" class="img-fluid w-100" alt="Gallery Image 10">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-11.jpg" data-fancybox="group">
+            <img src="images/gallery-11.jpg" class="img-fluid w-100" alt="Gallery Image 11">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-12.jpg" data-fancybox="group">
+            <img src="images/gallery-12.jpg" class="img-fluid w-100" alt="Gallery Image 12">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-13.jpg" data-fancybox="group">
+            <img src="images/gallery-13.jpg" class="img-fluid w-100" alt="Gallery Image 13">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-14.jpg" data-fancybox="group">
+            <img src="images/gallery-14.jpg" class="img-fluid w-100" alt="Gallery Image 14">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-15.jpg" data-fancybox="group">
+            <img src="images/gallery-15.jpg" class="img-fluid w-100" alt="Gallery Image 15">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-16.jpg" data-fancybox="group">
+            <img src="images/gallery-16.jpg" class="img-fluid w-100" alt="Gallery Image 16">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-17.jpg" data-fancybox="group">
+            <img src="images/gallery-17.jpg" class="img-fluid w-100" alt="Gallery Image 17">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-18.jpg" data-fancybox="group">
+            <img src="images/gallery-18.jpg" class="img-fluid w-100" alt="Gallery Image 18">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-19.jpg" data-fancybox="group">
+            <img src="images/gallery-19.jpg" class="img-fluid w-100" alt="Gallery Image 19">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-20.jpg" data-fancybox="group">
+            <img src="images/gallery-20.jpg" class="img-fluid w-100" alt="Gallery Image 20">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-21.jpg" data-fancybox="group">
+            <img src="images/gallery-21.jpg" class="img-fluid w-100" alt="Gallery Image 21">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-22.jpg" data-fancybox="group">
+            <img src="images/gallery-22.jpg" class="img-fluid w-100" alt="Gallery Image 22">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-23.jpg" data-fancybox="group">
+            <img src="images/gallery-23.jpg" class="img-fluid w-100" alt="Gallery Image 23">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-24.jpg" data-fancybox="group">
+            <img src="images/gallery-24.jpg" class="img-fluid w-100" alt="Gallery Image 24">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-25.jpg" data-fancybox="group">
+            <img src="images/gallery-25.jpg" class="img-fluid w-100" alt="Gallery Image 25">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-26.jpg" data-fancybox="group">
+            <img src="images/gallery-26.jpg" class="img-fluid w-100" alt="Gallery Image 26">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-27.jpg" data-fancybox="group">
+            <img src="images/gallery-27.jpg" class="img-fluid w-100" alt="Gallery Image 27">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-28.jpg" data-fancybox="group">
+            <img src="images/gallery-28.jpg" class="img-fluid w-100" alt="Gallery Image 28">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-29.jpg" data-fancybox="group">
+            <img src="images/gallery-29.jpg" class="img-fluid w-100" alt="Gallery Image 29">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-30.jpg" data-fancybox="group">
+            <img src="images/gallery-30.jpg" class="img-fluid w-100" alt="Gallery Image 30">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-31.jpg" data-fancybox="group">
+            <img src="images/gallery-31.jpg" class="img-fluid w-100" alt="Gallery Image 31">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-32.jpg" data-fancybox="group">
+            <img src="images/gallery-32.jpg" class="img-fluid w-100" alt="Gallery Image 32">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-33.jpg" data-fancybox="group">
+            <img src="images/gallery-33.jpg" class="img-fluid w-100" alt="Gallery Image 33">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-34.jpg" data-fancybox="group">
+            <img src="images/gallery-34.jpg" class="img-fluid w-100" alt="Gallery Image 34">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-35.jpg" data-fancybox="group">
+            <img src="images/gallery-35.jpg" class="img-fluid w-100" alt="Gallery Image 35">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-36.jpg" data-fancybox="group">
+            <img src="images/gallery-36.jpg" class="img-fluid w-100" alt="Gallery Image 36">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-37.jpg" data-fancybox="group">
+            <img src="images/gallery-37.jpg" class="img-fluid w-100" alt="Gallery Image 37">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-38.jpg" data-fancybox="group">
+            <img src="images/gallery-38.jpg" class="img-fluid w-100" alt="Gallery Image 38">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-39.jpg" data-fancybox="group">
+            <img src="images/gallery-39.jpg" class="img-fluid w-100" alt="Gallery Image 39">
+          </a>
+        </div>
+      </div>
+      <div class="col-md-3 gallery-block hidden-gallery">
+        <div class="gallery-img">
+          <a href="images/gallery-40.jpg" data-fancybox="group">
+            <img src="images/gallery-40.jpg" class="img-fluid w-100" alt="Gallery Image 40">
+          </a>
+        </div>
+      </div>
+ <div class="col-md-12">
+           <div class="text-center mt-4">
+      <button class="dbtn1" id="seeAllBtn" ><a>See All</a></button>
+    </div>
+ </div>
+    </div>
+        </div>
+    </div>
+
+    <div class="donate-info donate-info-emergency mt70">
+        <div class="container">
+            <h2>GIVE THE CHILD A CHILDHOOD</h2>
+            <p><i>Your support is vital to ensure this change and make a direct &amp; lasting impact on the lives of
+                    children. Whether you choose to donate monthly or choose to provide a single gift. You are standing
+                    up for every child's right to health, education, equality &amp; protection.</i></p>
+            <div class="row mt-3">
+                <div class="col-md-8">
+                    <div class="emergency-info">
+                        <h2>For Bank Transfers ( NEFT / RTGS / IMPS / CHEQUE)</h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bankd">
+                            <h4>SAHYOG CARE FOR YOU</h4>
+                            <p>A/c no-520101045851448</p>
+                            <p>Union bank of india</p>
+                            <p>Behra Enclave</p>
+                            <p>IFSC-UBIN0931667</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="display:none">
+                    <div class="side-bar-qr mt-3" >
+                        <img src="https://www.sahyogcare4u.org/images/sahyogcare4u-qr-child-labour.jpeg" alt="">
+                        <h4>Scan &amp; Donate</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="child-labour-btn"> <a href="#donation-btn">DONATE</a> </button>
+    <?php include("./includes/footer-child-labour.php") ?>
+    <?php include("./includes/script.php") ?>
+    <script>
+        const cart = {};
+
+        function updateCartTable() {
+            const tbody = document.querySelector("#cartTable tbody");
+            tbody.innerHTML = "";
+            let totalAmount = 0;
+
+            for (const itemName in cart) {
+                const item = cart[itemName];
+                const row = document.createElement("tr");
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
+
+                row.innerHTML = `
+      <td>${itemName}</td>
+      <td>₹ ${item.price}</td>
+      <td>${item.quantity}</td>
+      <td>₹ ${itemTotal}</td>
+    `;
+                tbody.appendChild(row);
+            }
+
+            document.getElementById("totalAmount").innerText = `₹ ${totalAmount}`;
+
+            const amountInput = document.getElementById("amountInput");
+            if (amountInput) {
+                amountInput.value = totalAmount;
+            }
+        }
+
+        // For donation list items
+        document.querySelectorAll(".donation-list li").forEach((listItem) => {
+            const addToCartBtn = listItem.querySelector(".addtocart");
+            const quantityControls = listItem.querySelector(".quantity-controls");
+
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener("click", () => {
+                    const name = listItem.getAttribute("data-name");
+                    const price = parseInt(listItem.getAttribute("data-price"));
+
+                    cart[name] = {
+                        price,
+                        quantity: 1
+                    };
+                    updateCartTable();
+
+                    addToCartBtn.style.display = "none";
+                    if (quantityControls) {
+                        quantityControls.style.display = "inline-block";
+                        quantityControls.querySelector(".qty").innerText = 1;
+                    }
+                });
+            }
+
+            if (quantityControls) {
+                const increaseBtn = quantityControls.querySelector(".increase");
+                const decreaseBtn = quantityControls.querySelector(".decrease");
+                const qtyDisplay = quantityControls.querySelector(".qty");
+
+                increaseBtn.addEventListener("click", () => {
+                    const name = listItem.getAttribute("data-name");
+                    cart[name].quantity += 1;
+                    qtyDisplay.innerText = cart[name].quantity;
+                    updateCartTable();
+                });
+
+                decreaseBtn.addEventListener("click", () => {
+                    const name = listItem.getAttribute("data-name");
+                    if (cart[name].quantity > 1) {
+                        cart[name].quantity -= 1;
+                        qtyDisplay.innerText = cart[name].quantity;
+                    } else {
+                        delete cart[name];
+                        quantityControls.style.display = "none";
+                        addToCartBtn.style.display = "inline-block";
+                    }
+                    updateCartTable();
+                });
+            }
+        });
+
+        // For swiper-slide items (another section, e.g. "You Can Select & Donate individual Ration Item")
+        document.querySelectorAll(".swiper-slide").forEach((slide) => {
+            const addToCartBtn = slide.querySelector(".addtocart2");
+            const quantityControls = slide.querySelector(".quantity-controls");
+            const qtyDisplay = quantityControls?.querySelector(".qty");
+            const increaseBtn = quantityControls?.querySelector(".increase");
+            const decreaseBtn = quantityControls?.querySelector(".decrease");
+
+            if (addToCartBtn) {
+                addToCartBtn.addEventListener("click", () => {
+                    const name = slide.getAttribute("data-name");
+                    const price = parseInt(slide.getAttribute("data-price"));
+
+                    if (cart[name]) {
+                        cart[name].quantity += 1;
+                    } else {
+                        cart[name] = {
+                            price,
+                            quantity: 1
+                        };
+                    }
+                    updateCartTable();
+
+                    addToCartBtn.style.display = "none";
+                    if (quantityControls) {
+                        quantityControls.style.display = "inline-block";
+                        qtyDisplay.innerText = cart[name].quantity;
+                    }
+                });
+            }
+
+            if (increaseBtn) {
+                increaseBtn.addEventListener("click", () => {
+                    const name = slide.getAttribute("data-name");
+                    if (cart[name]) {
+                        cart[name].quantity += 1;
+                        qtyDisplay.innerText = cart[name].quantity;
+                        updateCartTable();
+                    }
+                });
+            }
+
+            if (decreaseBtn) {
+                decreaseBtn.addEventListener("click", () => {
+                    const name = slide.getAttribute("data-name");
+                    if (cart[name]) {
+                        if (cart[name].quantity > 1) {
+                            cart[name].quantity -= 1;
+                            qtyDisplay.innerText = cart[name].quantity;
+                        } else {
+                            delete cart[name];
+                            quantityControls.style.display = "none";
+                            addToCartBtn.style.display = "inline-block";
+                        }
+                        updateCartTable();
+                    }
+                });
+            }
+        });
+    </script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.11/interact.min.js"></script>
+    <script>
+        const clippings = [
+            // 'https://sahyogcare4u.org/images/child-labour-news-1.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-2.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-3.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-4.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-5.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-6.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-7.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-8.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-9.jpg',
+            'https://sahyogcare4u.org/images/child-labour-news-10.jpg',
+        ];
+
+        let highestZIndex = 1;
+
+        function positionClippings() {
+            const board = document.querySelector('.bulletin-board');
+            board.innerHTML = '<div class="cork-texture"></div>'; // Clear existing clippings
+
+            const boardWidth = board.clientWidth;
+            const boardHeight = board.clientHeight;
+
+            const positions = generatePositions(boardWidth, boardHeight, clippings.length);
+
+            clippings.forEach((src, index) => {
+                const img = new Image();
+                img.src = src;
+                img.alt = `Clipping ${index + 1}`;
+
+                img.onload = function () {
+                    const div = document.createElement('div');
+                    div.className = 'clipping';
+
+                    const pin = document.createElement('div');
+                    pin.className = 'pin';
+                    div.appendChild(pin);
+
+                    const aspectRatio = img.naturalWidth / img.naturalHeight;
+                    const zoomFactor = 1.5; // Adjust this value to control zoom level
+
+                    let width = boardWidth * 0.25 * zoomFactor; // Base width as 25% of board width, then zoomed
+                    let height = width / aspectRatio;
+
+                    // Adjust size if height is too large
+                    if (height > boardHeight * 0.6) {
+                        height = boardHeight * 0.6;
+                        width = height * aspectRatio;
+                    }
+
+                    div.style.width = `${width}px`;
+                    div.style.height = `${height}px`;
+
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'contain';
+
+                    div.appendChild(img);
+
+                    const {
+                        x,
+                        y
+                    } = positions[index];
+
+                    // Ensure the clipping stays within the board boundaries
+                    const leftPosition = Math.max(0, Math.min(x - width / 4, boardWidth - width));
+                    const topPosition = Math.max(0, Math.min(y - height / 4, boardHeight - height));
+
+                    div.style.left = `${leftPosition}px`;
+                    div.style.top = `${topPosition}px`;
+                    div.style.transform = `rotate(${Math.floor(Math.random() * 30 - 15)}deg)`;
+
+                    board.appendChild(div);
+                    setupInteractions(div);
+                };
+            });
+        }
+
+        function generatePositions(boardWidth, boardHeight, count) {
+            const gridSize = Math.ceil(Math.sqrt(count * 1.5)); // Increase grid size for better distribution
+            const cellWidth = boardWidth / gridSize;
+            const cellHeight = boardHeight / gridSize;
+
+            const positions = [];
+            for (let i = 0; i < count; i++) {
+                const row = Math.floor(i / gridSize);
+                const col = i % gridSize;
+
+                const x = col * cellWidth + Math.random() * (cellWidth * 0.5);
+                const y = (row * cellHeight + Math.random() * (cellHeight * 0.5));
+
+                positions.push({
+                    x,
+                    y
+                });
+            }
+
+            return positions.sort(() => Math.random() - 0.5);
+        }
+
+        function setupInteractions(clipping) {
+            clipping.addEventListener('mousedown', bringToFront);
+            clipping.addEventListener('touchstart', bringToFront);
+
+            interact(clipping).draggable({
+                inertia: true,
+                modifiers: [
+                    interact.modifiers.restrictRect({
+                        restriction: 'parent',
+                        endOnly: true
+                    })
+                ],
+                listeners: {
+                    move: dragMoveListener,
+                }
+            });
+        }
+
+        function bringToFront(event) {
+            highestZIndex++;
+            this.style.zIndex = highestZIndex;
+        }
+
+        function dragMoveListener(event) {
+            const target = event.target;
+            const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+            const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            target.style.transform = `translate(${x}px, ${y}px) rotate(${getRotation(target)}deg)`;
+
+            target.setAttribute('data-x', x);
+            target.setAttribute('data-y', y);
+        }
+
+        function getRotation(el) {
+            const st = window.getComputedStyle(el, null);
+            const tm = st.getPropertyValue("-webkit-transform") ||
+                st.getPropertyValue("-moz-transform") ||
+                st.getPropertyValue("-ms-transform") ||
+                st.getPropertyValue("-o-transform") ||
+                st.getPropertyValue("transform");
+            if (tm !== "none") {
+                const values = tm.split('(')[1].split(')')[0].split(',');
+                const angle = Math.round(Math.atan2(values[1], values[0]) * (180 / Math.PI));
+                return (angle < 0 ? angle + 360 : angle);
+            }
+            return 0;
+        }
+
+        document.addEventListener('DOMContentLoaded', positionClippings);
+        window.addEventListener('resize', positionClippings);
+    </script>
+      <script>
+    const seeAllBtn = document.getElementById('seeAllBtn');
+    seeAllBtn.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-block.hidden-gallery').forEach(el => {
+        el.classList.add('fade-in');
+        el.classList.remove('hidden-gallery');
+      });
+      seeAllBtn.style.display = 'none';
+    });
+  </script>
+</body>
+
+</html>
