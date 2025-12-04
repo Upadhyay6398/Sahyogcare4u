@@ -1,3 +1,46 @@
+<?php
+// Load configuration and database before any HTML output
+include('config.php');
+
+$slug = isset($_GET['slug']) ? $_GET['slug'] : null;
+
+$utm_source = isset($_GET['utm_source']) ? $_GET['utm_source'] : '';
+$utm_medium = isset($_GET['utm_medium']) ? $_GET['utm_medium'] : '';
+$utm_campaign = isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : '';
+$utm_term = isset($_GET['utm_term']) ? $_GET['utm_term'] : '';
+$utm_content = isset($_GET['utm_content']) ? $_GET['utm_content'] : '';
+
+
+$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$category = null;
+$programs = [];
+
+if ($slug) {
+    $sql = "SELECT * FROM `category` WHERE `slug` = :slug AND `status` = '1'";
+    $stmt = $DB->DB->prepare($sql);
+    $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
+    $stmt->execute();
+    $category = $stmt->fetch();
+
+    if ($category) {
+        $category_id = $category['id'];
+        $program_sql = "SELECT * FROM `programs` WHERE `category_id` = :category_id AND `status` = '1'";
+        $program_stmt = $DB->DB->prepare($program_sql);
+        $program_stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+        $program_stmt->execute();
+        $programs = $program_stmt->fetchAll();
+    } else {
+        // If slug is invalid, redirect before any output
+        header("Location: index.php", true, 302);
+        exit;
+    }
+} else {
+    // If no slug is provided, redirect before any output
+    header("Location: index.php", true, 302);
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,35 +50,6 @@
       <link rel="icon" href="images/favicons.png" type="image/x-icon">
     <?php include("./includes/top.php")?>
     
-    <?php
-    $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
-    $category = null;
-    $programs = [];
-
-   
-    if ($slug) {
-        $sql = "SELECT * FROM `category` WHERE `slug` = :slug AND `status` = '1'";
-        $stmt = $DB->DB->prepare($sql);
-        $stmt->bindParam(':slug', $slug, PDO::PARAM_STR);
-        $stmt->execute();
-        $category = $stmt->fetch();
-       
-        if ($category) {    
-            $category_id = $category['id'];
-            $program_sql = "SELECT * FROM `programs` WHERE `category_id` = :category_id AND `status` = '1'";
-            $program_stmt = $DB->DB->prepare($program_sql);
-            $program_stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
-            $program_stmt->execute();
-            $programs = $program_stmt->fetchAll();
-        } else {
-         
-            header("HTTP/1.0 404 Not Found");
-            echo '<script>window.location.href="index.php";</script>';
-            exit;
-        }
-    }
-    ?>
-
     <title><?= !empty($category['meta_title']) ? htmlspecialchars($category['meta_title']) : 'Programs'; ?></title>
     <meta name="keywords"
         content="<?= !empty($category['meta_keyword']) ? htmlspecialchars($category['meta_keyword']) : ''; ?>">
@@ -89,7 +103,18 @@
                         </div>
                         <p class="pb-4">Please select pre-defined amount or fill in custom amount.</p>
                         <form method="post" data-parsley-validate action="generateCCHash.php">
+                            
                             <input type="hidden" name="source" value="<?php echo htmlspecialchars($category['name']); ?>">
+                            
+                                         <input type="hidden" name="utm_source" value="<?php echo htmlspecialchars($utm_source); ?>">
+                   <input type="hidden" name="utm_medium" value="<?php echo htmlspecialchars($utm_medium); ?>">
+                   <input type="hidden" name="utm_campaign" value="<?php echo htmlspecialchars($utm_campaign); ?>">
+                   <input type="hidden" name="utm_term" value="<?php echo htmlspecialchars($utm_term); ?>">
+                   <input type="hidden" name="utm_content" value="<?php echo htmlspecialchars($utm_content); ?>">
+                   <input type="hidden" name="campaign_url" value="<?php echo htmlspecialchars($current_url); ?>">
+                   
+                            
+                            
                             <input type="hidden" class="form-control" id="patient_id" name="patient_id"
                                 value="<?php echo htmlspecialchars($category['id']); ?>">
                                 
@@ -119,7 +144,7 @@
                                 type="email" required>
 
                             <div class="secure-payments-text secure-payments-text-program mx-3 mt-2">
-                                <span class="secure-payments-icon">🔒</span> Your payments are secured with CCAvenue
+                                <span class="secure-payments-icon">ðŸ”’</span> Your payments are secured with CCAvenue
                             </div>
 
                             <div class="text-center">
@@ -154,11 +179,18 @@
                                     <h3><?php echo htmlspecialchars($program['subprogramtitle']); ?></h3>
                                     </a>
                                     <p>
-                                        <?php
-                                        $desc = $program['subprogramdescription'];
-                                        $shortDesc = mb_substr($desc, 0, 150, 'UTF-8');
-                                        echo (strlen($desc) > 150 ? $shortDesc . '...' : $desc);
-                                        ?>
+                                       <?php
+$desc = strip_tags($program['subprogramdescription']); 
+$max = 150;
+
+if (mb_strlen($desc, 'UTF-8') > $max) {
+    $shortDesc = mb_substr($desc, 0, $max, 'UTF-8');
+    echo $shortDesc . '...';
+} else {
+    echo $desc;
+}
+?>
+
                                         <a class="read-more" href="subprogram/<?php echo $program['slug']; ?>">Learn More</a>
 
                                 </div>
