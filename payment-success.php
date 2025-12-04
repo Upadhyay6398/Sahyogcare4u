@@ -21,7 +21,7 @@ if (isset($_POST["encResp"])) {
     $rcvdString = decrypt($encResponse, $workingKey);
     parse_str($rcvdString, $data); 
 
-    error_log("Decrypted CCAvenue Response: " . $rcvdString);
+
 
     if (!$rcvdString || strpos($rcvdString, 'order_status=') === false) {
         header("Location: payment-failed.php");
@@ -43,7 +43,34 @@ if (isset($_POST["encResp"])) {
     $pan_number = $data['merchant_param3'] ?? '';
     $country = $data['merchant_param4'] ?? '';
     $utm_source = $data['merchant_param5'] ?? '';
-    $utm_campaign = $data['merchant_param6'] ?? '';
+    // utm_campaign aur baaki UTM fields PSU table se aayenge
+    $utm_campaign = '';
+    
+    // Get remaining UTM data from PSU table (since CCAvenue has merchant_param limit)
+    $utm_medium = '';
+    $utm_term = '';
+    $utm_content = '';
+    $campaign_url = '';
+    
+    try {
+        $psuSql = "SELECT utm_campaign, utm_medium, utm_term, utm_content, campaign_url FROM psu WHERE order_id = :order_id LIMIT 1";
+        $psuStmt = $DB->DB->prepare($psuSql);
+        $psuStmt->bindParam(':order_id', $order_id);
+        $psuStmt->execute();
+        $psuData = $psuStmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($psuData) {
+            $utm_campaign = $psuData['utm_campaign'] ?? '';
+            $utm_medium   = $psuData['utm_medium'] ?? '';
+            $utm_term     = $psuData['utm_term'] ?? '';
+            $utm_content  = $psuData['utm_content'] ?? '';
+            $campaign_url = $psuData['campaign_url'] ?? '';
+          
+        }
+    } catch (Exception $e) {
+        error_log("Payment Success - Error fetching PSU data: " . $e->getMessage());
+    }
+    
     $billing_address = $data['billing_address'] ?? '';
     $billing_city = $data['billing_city'] ?? '';
     $billing_state = $data['billing_state'] ?? '';
@@ -54,7 +81,7 @@ if (isset($_POST["encResp"])) {
 
 $full_address = trim("{$billing_address}, {$billing_city}, {$billing_state} - {$billing_zip}, {$billing_country}");
 
-    // Prepare payment data for insertion
+    // Prepare payment data for insertion with full UTM tracking
     $paymentData = [
         'name'            => $name,
         'mobile'          => $mobile,
@@ -66,14 +93,17 @@ $full_address = trim("{$billing_address}, {$billing_city}, {$billing_state} - {$
         'tstp'            => $tstp,
         'ip_address'      => $ip_address,
         'source'          => $source,
-        'utm_campaign'      =>$utm_campaign,
-        'utm_source'        =>$utm_source,
+        'utm_source'      => $utm_source,
+        'utm_medium'      => $utm_medium,
+        'utm_campaign'    => $utm_campaign,
+        'utm_term'        => $utm_term,
+        'utm_content'     => $utm_content,
+        'campaign_url'    => $campaign_url,
         'patient_id'      => $patient_id,
         'payment_mode'    => $payment_mode,
         'order_id'        => $order_id,
         'address'         => $full_address,
         'tracking_id'     => $tracking_id
-       
     ];
 
     try {
@@ -111,24 +141,17 @@ $full_address = trim("{$billing_address}, {$billing_city}, {$billing_state} - {$
             sendmailToAdmin("Payment Success: Sahyogcare4u", $msg);
             sendMailToUserForPayment($email, $name, "Payment Success: Sahyogcare4u", $source);
             
-            // Send WhatsApp message via AiSensy (non-blocking)
             try {
-                $whatsappSent = sendWhatsAppMessage($mobile, $name, $amount);
-                if ($whatsappSent) {
-                    error_log("WhatsApp message sent successfully to $mobile");
-                } else {
-                    error_log("Failed to send WhatsApp message to $mobile");
-                }
+              
+                sendWhatsAppMessage($mobile, $name, $amount);
             } catch (Exception $e) {
-                error_log("WhatsApp error: " . $e->getMessage());
-                // Continue execution even if WhatsApp fails
+    
             }
 
-            // Redirect to thank-you page
+          
             echo "<script>window.location.href='thank-you.php';</script>";
             exit;
         } else {
-            // If payment failed, just redirect to failed page
             header("Location: payment-failed.php");
             exit;
         }
