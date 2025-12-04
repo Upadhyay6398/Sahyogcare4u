@@ -22,7 +22,11 @@ try {
         exit;
     }
 
-    $data['details'] = json_decode($rs['details'], true);
+    // Decode details if exists and not null
+    $details = null;
+    if (!empty($rs['details'])) {
+        $details = json_decode($rs['details'], true);
+    }
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage();
