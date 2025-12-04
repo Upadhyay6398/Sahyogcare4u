@@ -6,7 +6,7 @@ function sendmailToAdmin($subject,$message)
     try {
         $mail->isSMTP();
         $mail->SMTPDebug = 0;
-        $mail->Host = "sahyogcare4u.org";
+        $mail->Host = "mail.sahyogcare4u.org";
         $mail->Port = 587;
         $mail->SMTPSecure = "auto";
         $mail->SMTPAuth = true;
@@ -16,7 +16,6 @@ function sendmailToAdmin($subject,$message)
         $mail->addAddress('projectsahyog2018@gmail.com', 'Sahyog Care4u');
         $mail->addAddress('sahyog.donation@gmail.com', 'Sahyog Care4u');
         $mail->addAddress('info@sahyogcare4u.org', 'Sahyog Care4u');
-        $mail->addAddress('brajmohanupadhyay962@gmail.com', 'Sahyog Care4u');
         $mail->addBCC('hemukaushik77@gmail.com', 'Sahyog Care4u');
         
         $mail->Subject =$subject;
@@ -259,13 +258,7 @@ function sendNewsletterMailToUser($toEmail, $toName, $subject, $source) {
     return false;
 }
 
-/**
- * Send WhatsApp message via AiSensy API
- * @param string $mobile - Mobile number with country code (e.g., 919876543210)
- * @param string $donorName - Name of the donor
- * @param string $amount - Donation amount
- * @return bool - True on success, False on failure
- */
+
 function sendWhatsAppMessage($mobile, $donorName, $amount = '') {
     try {
         // Validate mobile number - remove any spaces, dashes, or special characters
@@ -312,19 +305,14 @@ function sendWhatsAppMessage($mobile, $donorName, $amount = '') {
         $curlError = curl_error($ch);
         curl_close($ch);
         
-        // Log the response for debugging
-        error_log("AiSensy WhatsApp API Response - HTTP Code: $httpCode, Response: $response");
-        
         if ($curlError) {
             error_log("AiSensy cURL Error: $curlError");
             return false;
         }
         
-        // Check if request was successful
         if ($httpCode == 200 || $httpCode == 201) {
             $responseData = json_decode($response, true);
             
-            // Check if API returned success
             if (isset($responseData['status']) && ($responseData['status'] === 'success' || $responseData['status'] === true)) {
                 return true;
             }
