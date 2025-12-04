@@ -54,7 +54,7 @@ function addActivityLog($activity,$work)
   global $DB;
   
   $data = [
-            'login_landing'    => $_SESSION['LADMIN_USER_ID'],
+            'login'    => $_SESSION['ADMIN_USER_ID'],
             'activity' => $activity,
             'work'     => json_encode($work),
             'ip'       => $_SERVER['REMOTE_ADDR'],
@@ -114,64 +114,74 @@ function RandomString()
     return $randstring;
 }
 
-function login($email, $password) 
+function login($email, $password, $otp_code) 
 {
-  global $DB;
-	
-	$row = $DB->getRow('login_landing',['email'=>$email,'type'=>'admin']);
+    global $DB;
+    require_once("../include/GoogleAuthenticator.php");
 
-	if($row)
-	{ 
-	$num = $DB->getCount('login_landing',['email'=>$email,'type'=>'admin']);
-	$user_id  = $row['id'];
-	$username = $row['username']; 
-	$db_password = $row['password'];
-	$salt        = $row['salt'];
-	$role        = $row['role'];
+    $row = $DB->getRow('login_whataapp', ['email' => $email, 'type' => 'admin']);
 
-    // hash the password with the unique salt.
-    $password = hash('sha512', $password . $salt);
-    if ($num == 1) {
-        if (checkbrute($user_id) == true) {
-            return false;
-        } else {
-            
-            if ($db_password == $password) {
-                
-                $user_browser = $_SERVER['HTTP_USER_AGENT'];
-                $user_id = preg_replace("/[^0-9]+/", "", $user_id);
-                $_SESSION['LADMIN_USER_ID'] = $user_id;
-                $username = preg_replace("/[^a-zA-Z0-9_\-]+/","",$username);
+    if ($row) {
+        $num = $DB->getCount('login_whataapp', ['email' => $email, 'type' => 'admin']);
+        $user_id      = $row['id'];
+        $username     = $row['username'];
+        $db_password  = $row['password'];
+        $salt         = $row['salt'];
+        $role         = $row['role'];
+        $google_secret = $row['google_secret'];
 
-                $_SESSION['LADMIN_USER_NAME']  = $username;
-                $_SESSION['LADMIN_LOGIN_STR']  = hash('sha512',$password . $user_browser);
-      					$_SESSION['LADMIN_LOGIN_ROLE'] = json_decode($role,true);
-      					
-                $date = date("Y-m-d H:i:s");
-      					$ip=$_SERVER['REMOTE_ADDR'];
+        // Hash the password
+        $password = hash('sha512', $password . $salt);
 
-                $data_updated = [
-                                 'last_login' => $date,
-                                 'ip'         => $ip
-                                ];
-                $DB->update('login_landing',$data_updated,$user_id);			 
-                return true;
-
-            } else {
-                $data_updated = [
-                                 'user_id' => $user_id,
-                                 'time'    => time()
-                                ];
-                $DB->insert('login_attempts',$data_updated);
+        if ($num == 1) {
+            if (checkbrute($user_id)) {
                 return false;
+            } else {
+                if ($db_password == $password) {
+
+                    
+                    $ga = new PHPGangsta_GoogleAuthenticator();
+                    if (!$ga->verifyCode($google_secret, $otp_code, 2)) {
+                        // Invalid OTP
+                        return false;
+                    }
+
+                    $user_browser = $_SERVER['HTTP_USER_AGENT'];
+                    $user_id = preg_replace("/[^0-9]+/", "", $user_id);
+                    $_SESSION['ADMIN_USER_ID'] = $user_id;
+                    $username = preg_replace("/[^a-zA-Z0-9_\-]+/", "", $username);
+
+                    $_SESSION['ADMIN_USER_NAME'] = $username;
+                    $_SESSION['ADMIN_LOGIN_STR'] = hash('sha512', $password . $user_browser);
+                    $_SESSION['ADMIN_LOGIN_ROLE'] = json_decode($role, true);
+
+                    $date = date("Y-m-d H:i:s");
+                    $ip = $_SERVER['REMOTE_ADDR'];
+
+                    $data_updated = [
+                        'last_login' => $date,
+                        'ip' => $ip
+                    ];
+                    $DB->update('login_whataapp', $data_updated, $user_id);
+
+                    return true;
+
+                } else {
+                    // Wrong password
+                    $data_updated = [
+                        'user_id' => $user_id,
+                        'time' => time()
+                    ];
+                    $DB->insert('login_attempts', $data_updated);
+                    return false;
+                }
             }
+        } else {
+            return false;
         }
-    } else {
-        // No user exists.
-        return false;
     }
-  }
 }
+
 
 
 
@@ -198,14 +208,14 @@ function login_check()
 {
 	global $DB;
      
-    if(isset($_SESSION['LADMIN_USER_ID'],$_SESSION['LADMIN_USER_NAME'],$_SESSION['LADMIN_LOGIN_STR'])) {
+    if(isset($_SESSION['ADMIN_USER_ID'],$_SESSION['ADMIN_USER_NAME'],$_SESSION['ADMIN_LOGIN_STR'])) {
  
-        $user_id      = $_SESSION['LADMIN_USER_ID'];
-        $login_string = $_SESSION['LADMIN_LOGIN_STR'];
-        $username     = $_SESSION['LADMIN_USER_NAME'];
+        $user_id      = $_SESSION['ADMIN_USER_ID'];
+        $login_string = $_SESSION['ADMIN_LOGIN_STR'];
+        $username     = $_SESSION['ADMIN_USER_NAME'];
  
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
-		    $row = $DB->getRowById('login_landing',$user_id);
+            $row = $DB->getRowById('login_whataapp',$user_id);
 
         if ($row) {
 
@@ -271,7 +281,7 @@ function isAjax()
 
 function isAllowed($resource)
  {
-  if(in_array($resource,$_SESSION['LADMIN_LOGIN_ROLE']))
+  if(in_array($resource,$_SESSION['ADMIN_LOGIN_ROLE']))
     {
 	return true;	
 	}	 
@@ -339,12 +349,114 @@ function getFileDirectory()
 
  function getProductImageName($filename)
  {
-    $filename = time()."_".strtolower($filename);
-    return $folder.$filename;
+     $folder = "uploads/project/"; // Define the folder where images are stored
+     $filename = time() . "_" . strtolower($filename);
+     return $folder . $filename;
  }
+  
  
- function getcountryName()
+ 
+function insertKeyWords($pid, $keyword)
 {
-    $getdetails = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=' . $_SERVER['REMOTE_ADDR']));
-    return $getdetails['geoplugin_countryName'];
+  global $DB;
+  
+    $stmt = $DB->DB->prepare("DELETE FROM product_keyword WHERE product_id = :id");
+    $stmt->bindParam(':id', $pid, PDO::PARAM_INT);   
+    $stmt->execute();
+        
+        
+  $keywordArray = explode(",", $keyword);
+  foreach ($keywordArray as $keywordStr) {
+    $data = ['product_id' => $pid, 'keywords' => $keywordStr];
+    try {
+        $res = $DB->insert('product_keyword', $data);
+    } catch (Exception $e) {
+        return false;
+    }
+    
+  }
+  return true;
 }
+
+/**
+ * Send WhatsApp message via AiSensy API
+ * @param string $mobile - Mobile number with country code (e.g., 919876543210)
+ * @param string $donorName - Name of the donor
+ * @param string $amount - Donation amount
+ * @return bool - True on success, False on failure
+ */
+function sendWhatsAppMessage($mobile, $donorName, $amount = '') {
+    try {
+        // Clean mobile number - remove any spaces, dashes, or special characters
+        $mobile = preg_replace('/[^0-9]/', '', $mobile);
+        
+        // Use mobile number as is - don't add 91 automatically
+        // Mobile number will be used exactly as provided in database
+        
+        // Prepare the API payload
+        $payload = [
+            'apiKey' => AISENSY_API_KEY,
+            'campaignName' => AISENSY_CAMPAIGN_NAME,
+            'destination' => $mobile,
+            'userName' => $donorName,
+            'templateParams' => [
+                $donorName  // {{1}} parameter
+            ]
+        ];
+        
+        // If amount is provided, add it as additional parameter
+        if (!empty($amount)) {
+            $payload['templateParams'][] = $amount;
+        }
+        
+        // Initialize cURL
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, AISENSY_API_URL);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json'
+        ]);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+        // Increased timeout for bulk sending reliability
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        
+        // Execute request
+        $response = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curlError = curl_error($ch);
+        curl_close($ch);
+        
+        if ($curlError) {
+            error_log("AiSensy cURL Error: $curlError");
+            return false;
+        }
+        
+        // Check if request was successful
+        if ($httpCode == 200 || $httpCode == 201) {
+            $responseData = json_decode($response, true);
+            
+            // AiSensy may return {"success":"true", "submitted_message_id": "..."}
+            $hasSubmittedId = isset($responseData['submitted_message_id']) && !empty($responseData['submitted_message_id']);
+            $successFlag = false;
+            if (isset($responseData['success'])) {
+                // Accept both boolean true and string 'true'
+                $successFlag = ($responseData['success'] === true || $responseData['success'] === 'true' || $responseData['success'] === 1 || $responseData['success'] === '1');
+            }
+            $statusFlag = (isset($responseData['status']) && ($responseData['status'] === 'success' || $responseData['status'] === true));
+
+            if ($hasSubmittedId || $successFlag || $statusFlag) {
+                return true;
+            }
+        }
+        
+        return false;
+        
+    } catch (Exception $e) {
+        error_log("AiSensy WhatsApp Error: " . $e->getMessage());
+        return false;
+    }
+}
+?>
