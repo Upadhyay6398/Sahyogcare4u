@@ -87,10 +87,23 @@
                             <p>CHOOSE A CAUSE AND SELECT YOUR AMOUNT </p>
                         </div>
                     </div>
+<?php
+$utm_source = isset($_GET['utm_source']) ? $_GET['utm_source'] : '';
+$utm_medium = isset($_GET['utm_medium']) ? $_GET['utm_medium'] : '';
+$utm_campaign = isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : '';
+$utm_term = isset($_GET['utm_term']) ? $_GET['utm_term'] : '';
+$utm_content = isset($_GET['utm_content']) ? $_GET['utm_content'] : '';
 
+$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+?>
                     <form class="donation-form pt-2" js-parsasly-validate data-parsley-validate
                         action="generateCCHash.php" method="POST" id="donate-form">
-
+        <input type="hidden" name="utm_medium" value="<?php echo htmlspecialchars($utm_medium); ?>">
+                   <input type="hidden" name="utm_campaign" value="<?php echo htmlspecialchars($utm_campaign); ?>">
+                   <input type="hidden" name="utm_term" value="<?php echo htmlspecialchars($utm_term); ?>">
+                   <input type="hidden" name="utm_content" value="<?php echo htmlspecialchars($utm_content); ?>">
+                   <input type="hidden" name="campaign_url" value="<?php echo htmlspecialchars($current_url); ?>">
                         <!-- Hidden inputs for category-wise donation -->
                         <input type="hidden" name="source" value="donate-form">
                          <input type="hidden" name="donationDetails" id="donationInfo" value="">
