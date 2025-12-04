@@ -62,6 +62,16 @@
 <?php
 $slug = isset($_GET['slug']) ? $_GET['slug'] : null;
 
+// Capture UTM parameters from URL
+$utm_source = isset($_GET['utm_source']) ? $_GET['utm_source'] : '';
+$utm_medium = isset($_GET['utm_medium']) ? $_GET['utm_medium'] : '';
+$utm_campaign = isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : '';
+$utm_term = isset($_GET['utm_term']) ? $_GET['utm_term'] : '';
+$utm_content = isset($_GET['utm_content']) ? $_GET['utm_content'] : '';
+
+// Build full campaign URL
+$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
 if ($slug) {
     $sql = "SELECT * FROM `emergencycase` WHERE `slug` = :slug AND `status` = '1'";
     $stmt = $DB->DB->prepare($sql);
@@ -241,10 +251,19 @@ foreach ($programs as $program) {
                             <h2>Donate Now</h2>
                         </div>
                         <p>Please select pre-defined amount or fill in custom amount.</p>
-               <form class="side-bar-form mt-3" method="post" data-parsley-validate action="../generateCCHash.php">
+               <form class="side-bar-form mt-3" method="post" data-parsley-validate action="<?php echo $base_url; ?>generateCCHash.php">
                    
-                   <input type="hidden" name="source" value="<?php echo $slug; ?>">
-                              <input type="hidden" class="form-control" id="patient_id" name="patient_id" value="<?php echo htmlspecialchars($emergencycase['id']); ?>">
+                   <input type="hidden" name="source" value="<?php echo htmlspecialchars($slug); ?>">
+                   <input type="hidden" class="form-control" id="patient_id" name="patient_id" value="<?php echo htmlspecialchars($emergencycase['id']); ?>">
+                   <input type="hidden" name="country" value="India">
+                   
+                   <!-- UTM Parameters for Campaign Tracking -->
+                   <input type="hidden" name="utm_source" value="<?php echo htmlspecialchars($utm_source); ?>">
+                   <input type="hidden" name="utm_medium" value="<?php echo htmlspecialchars($utm_medium); ?>">
+                   <input type="hidden" name="utm_campaign" value="<?php echo htmlspecialchars($utm_campaign); ?>">
+                   <input type="hidden" name="utm_term" value="<?php echo htmlspecialchars($utm_term); ?>">
+                   <input type="hidden" name="utm_content" value="<?php echo htmlspecialchars($utm_content); ?>">
+                   <input type="hidden" name="campaign_url" value="<?php echo htmlspecialchars($current_url); ?>">
     <!-- Amount Buttons (Fixed data-amount values) -->
      <div class="amount-option">
     <button type="button" class="amount-btn" data-amount="500">500</button>
