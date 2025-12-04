@@ -8,6 +8,16 @@
            <link rel="icon" href="https://www.sahyogcare4u.org/images/favicons.png" type="image/x-icon">
      <?php
     $slug = $_GET['slug'] ?? null;
+    
+    $utm_source = isset($_GET['utm_source']) ? $_GET['utm_source'] : '';
+$utm_medium = isset($_GET['utm_medium']) ? $_GET['utm_medium'] : '';
+$utm_campaign = isset($_GET['utm_campaign']) ? $_GET['utm_campaign'] : '';
+$utm_term = isset($_GET['utm_term']) ? $_GET['utm_term'] : '';
+$utm_content = isset($_GET['utm_content']) ? $_GET['utm_content'] : '';
+
+
+$current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
     if ($slug) {
         // Fetch subprogram data
         $sql = "SELECT * FROM `programs` WHERE `slug` = :slug AND `status` = '1'";
@@ -30,7 +40,7 @@
     ?>
 <title><?= !empty($subprogram['metatitle']) ? htmlspecialchars($subprogram['metatitle']) : 'Subprogram'; ?></title>
     <meta name="keywords" content="<?= !empty($subprogram['metakeyword']) ? htmlspecialchars($subprogram['metakeyword']) : ''; ?>">
-    <meta name="description" content="<?= !empty($category['metadescription']) ? htmlspecialchars($subprogram['metadescription']) : ''; ?>">
+    <meta name="description" content="<?= !empty($subprogram['metadescription']) ? htmlspecialchars($subprogram['metadescription']) : ''; ?>">
 	
 	<meta name="google-site-verification" content="3Sv1MRaMdCRJOeW7TPio056Ow61KrbJntx7BmiHg08Y"/>
 	
@@ -103,6 +113,14 @@
                         <form method="post" data-parsley-validate action="../generateCCHash.php">
                              <input type="hidden" name="source" value="<?php echo htmlspecialchars($subprogram['subprogramtitle']); ?>">
                             <input type="hidden" class="form-control" id="patient_id" name="patient_id" value="<?php echo htmlspecialchars($subprogram['id']); ?>">
+                            
+                                    <input type="hidden" name="utm_source" value="<?php echo htmlspecialchars($utm_source); ?>">
+                   <input type="hidden" name="utm_medium" value="<?php echo htmlspecialchars($utm_medium); ?>">
+                   <input type="hidden" name="utm_campaign" value="<?php echo htmlspecialchars($utm_campaign); ?>">
+                   <input type="hidden" name="utm_term" value="<?php echo htmlspecialchars($utm_term); ?>">
+                   <input type="hidden" name="utm_content" value="<?php echo htmlspecialchars($utm_content); ?>">
+                   <input type="hidden" name="campaign_url" value="<?php echo htmlspecialchars($current_url); ?>">
+                   
                             <div class="amount-option">
                                 <button type="button" class="amount-btn-program" data-amount="3000">3000</button>
                                 <button type="button" class="amount-btn-program" data-amount="6000">6000</button>
@@ -117,7 +135,7 @@
                             <input id="email" name="email" class="form-control program-input mb-3" placeholder="Email" type="email" required>
 
                             <div class="secure-payments-text secure-payments-text-program mx-3 mt-2">
-                                <span class="secure-payments-icon">🔒</span> Your payments are secured with CCAvenue
+                                <span class="secure-payments-icon">ðŸ”’</span> Your payments are secured with CCAvenue
                             </div>
 
                             <div class="text-center">
