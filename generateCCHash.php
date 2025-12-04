@@ -1,23 +1,38 @@
 <?php
 include('config.php');
 
+
+
 // CCAvenue merchant details
 $merchant_id = "46963";
 $access_code = "AVLB03BK15AZ70BLZA";
 $working_key = "837B00989D8265DC30CE0237CDA4C302";
 
-// Customer inputs from the form
-$amount = $_POST['amount'];
-$name = $_POST['name'];
-$mobile = $_POST['mobile'];
-$email = $_POST['email'];
-$patient_id = $_POST['patient_id'];
-$country = $_POST['country'];
-$pan_number = $_POST['pan_number'];
+// Customer inputs from the form - with validation
+$amount = $_POST['amount'] ?? null;
+$name = $_POST['name'] ?? null;
+$mobile = $_POST['mobile'] ?? null;
+$email = $_POST['email'] ?? null;
+$patient_id = $_POST['patient_id'] ?? null;
+
+
+if (empty($amount) || empty($name) || empty($mobile) || empty($email)) {
+    // Required fields missing – keep a minimal error log (optional)
+    // error_log("GenerateCCHash Error: Missing required fields");
+    header("Location: payment-failed.php");
+    exit;
+}
+
+$country = $_POST['country'] ?? '';
+$pan_number = $_POST['pan_number'] ?? '';
 $source = $_POST['source'] ?? 'Online Payment'; 
-$utm_source = $_POST['utm_source'];
-$utm_campaign=$_POST['utm_campaign'];
-$donationDetails = $_POST['donationDetails'];
+$utm_source = $_POST['utm_source'] ?? '';
+$utm_medium = $_POST['utm_medium'] ?? '';
+$utm_campaign = $_POST['utm_campaign'] ?? '';
+$utm_term = $_POST['utm_term'] ?? '';
+$utm_content = $_POST['utm_content'] ?? '';
+$campaign_url = $_POST['campaign_url'] ?? '';
+$donationDetails = $_POST['donationDetails'] ?? '';
 
  
  
@@ -34,7 +49,7 @@ $stmt->execute();
 $existingPayment = $stmt->fetch();
 
 if (!$existingPayment) {
-    // Insert data into psu table
+    // Insert data into psu table with all UTM tracking
     $paymentData = [
         'name'            => $name,
         'mobile'          => $mobile,
@@ -47,18 +62,20 @@ if (!$existingPayment) {
         'ip_address'      => $ip_address,
         'source'          => $source,
         'patient_id'      => $patient_id,
-        'payment_mode' => 'Pending', 
+        'payment_mode'    => 'Pending', 
         'order_id'        => $txnid,
-        'utm_campaign'  => $utm_campaign,
-        'utm_source'      =>  $utm_source
-       
+        'utm_source'      => $utm_source,
+        'utm_medium'      => $utm_medium,
+        'utm_campaign'    => $utm_campaign,
+        'utm_term'        => $utm_term,
+        'utm_content'     => $utm_content,
+        'campaign_url'    => $campaign_url
     ];
- 
 
     try {
         $res = $DB->insert('psu', $paymentData);
     } catch (Exception $e) {
-        error_log("Error inserting payment data: " . $e->getMessage());
+        error_log("PSU Insert Error: " . $e->getMessage());
     }
 }
 
@@ -67,12 +84,13 @@ if (!$existingPayment) {
 $redirect_url = 'https://www.sahyogcare4u.org/payment-success.php';
 $cancel_url = 'https://www.sahyogcare4u.org/payment-failed.php';
 
+// NOTE: CCAvenue supports merchant_param1 to merchant_param5 only.
+// Keep most important fields here; the rest are fetched from PSU table on success.
 $data = [
     'tid' => $txnid,
     'merchant_id' => $merchant_id,
     'order_id' => $txnid,
     'amount' => $amount,
-    'source' => $source,
     'currency' => 'INR',
     'redirect_url' => $redirect_url,
     'cancel_url' => $cancel_url,
@@ -84,9 +102,7 @@ $data = [
     'merchant_param2' => $patient_id,
     'merchant_param3' => $pan_number,
     'merchant_param4' => $country,
-    'merchant_param5' => $utm_source,
-    'merchant_param6' => $utm_campaign
-
+    'merchant_param5' => $utm_source
 ];
 
 $merchant_data = http_build_query($data);
