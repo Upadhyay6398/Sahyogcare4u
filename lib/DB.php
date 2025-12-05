@@ -84,23 +84,35 @@ class DB {
 
 	   return $data;
     } 
+	public function insert($table, $data)
+{
+    $keys = array_keys($data);
+    $sql  = "INSERT INTO $table (" . implode(", ", $keys) . ") ";
+    $sql .= " VALUES ( :" . implode(", :", $keys) . ")";
 
-    public function insert($table,$data)
-    {
-    	$keys = array_keys($data);
-		$sql  = "INSERT INTO $table (".implode(", ",$keys).") ";
-		$sql .= " VALUES ( :".implode(", :",$keys).")";  
+    try {
+        $stmt = $this->DB->prepare($sql);
+        $stmt->execute($data);
 
-		$stmt   = $this->DB->prepare($sql);
-		$stmt->execute($data);
-
-		$id = $this->DB->lastInsertId();
-		if($id>0){
-		   return $id;
-		} else {
-		   return false;
-		}
-    } 
+        // Check if insert was successful
+        $id = $this->DB->lastInsertId();
+        
+        // Debugging
+        if ($id > 0) {
+          
+            return $id;
+        } else {
+            echo "Insert failed. No ID returned.";
+            return false;
+        }
+    } catch (PDOException $e) {
+        echo "Insert failed: " . $e->getMessage();
+        return false;
+    }
+}
+public function lastInsertId() {
+    return $this->DB->lastInsertId();
+}
 
     public function update($table,$data,$id)
     {
@@ -146,4 +158,24 @@ class DB {
 		  return false;
 		}
     }
+	public function getResults($table, $where)
+{
+    $sql = "SELECT * FROM $table WHERE 1=1";
+    foreach ($where as $key => $val) {
+        $sql .= " AND $key = :$key";
+    }
+
+    $stmt = $this->DB->prepare($sql);
+    $stmt->execute($where);
+    return $stmt->fetchAll();
+}
+public function getRowsByField($table, $field, $value) {
+    $query = "SELECT * FROM $table WHERE $field = :value";
+    $stmt = $this->DB->prepare($query); // Use $this->DB if that's your connection object
+    $stmt->bindParam(':value', $value);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }
