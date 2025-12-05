@@ -208,26 +208,13 @@ $percent_raised = $goal_amount > 0 ? min(100, round(($total_raised / $goal_amoun
 
 
                         <div class="program-inner-text">
-                            <p>Child labour and bonded labour are critical human rights issues that rob children of
-                                their childhood, education, and dignity, often forcing them into hazardous working
-                                conditions.Recognizing this grave reality, Sahyog Care For You has been tirelessly
-                                working since 2019 to rescue these vulnerable children and rehabilitate them back into
-                                mainstream society.</p>
+                            <p>Child labour and bonded labour are critical human rights issues that rob children of their childhood, education, and dignity, often forcing them into hazardous working conditions. Recognizing this grave reality, Sahyog Care For You has been tirelessly working since 2019 to rescue these vulnerable children and rehabilitate them back into mainstream society.</p>
 
-                            <p>To date, our organization has successfully conducted 174 rescue operations, freeing 3166
-                                children (2376 boys and 790 girls) from exploitative situations. In these cases, over
-                                900 employers and traffickers have been named in FIRs.</p>
+                            <p>To date, our organization has successfully conducted 174 rescue operations, freeing 3166 children (2376 boys and 790 girls) from exploitative situations. In these cases, over 900 employers and traffickers have been named in FIRs.</p>
 
-                            <p>Beyond rescue, Sahyog Care For You is committed to securing the futures of these
-                                children, having helped them receive approximately ₹7 Crore in back wages. During their
-                                rehabilitation, we have also provided essential ration kits to around 1500 needy
-                                families of rescued children.</p>
+                            <p>Beyond rescue, Sahyog Care For You is committed to securing the futures of these children, having helped them receive approximately ₹7 Crore in back wages. During their rehabilitation, we have also provided essential ration kits to around 1500 needy families of rescued children.</p>
 
-                            <p>We are proud to report that 40-50% of these rescued children have been enrolled in
-                                schools and vocational training courses, paving the way for a brighter future.
-                                Furthermore, Sahyog Care For You actively assists the families of rescued children in
-                                linking with relevant government schemes and facilitating necessary documentation,
-                                ensuring comprehensive support for their reintegration.</p>
+                            <p>We are proud to report that 40-50% of these rescued children have been enrolled in schools and vocational training courses, paving the way for a brighter future. Furthermore, Sahyog Care For You actively assists the families of rescued children in linking with relevant government schemes and facilitating necessary documentation, ensuring comprehensive support for their reintegration.</p>
                         </div>
 
                         <div class="m-4">
