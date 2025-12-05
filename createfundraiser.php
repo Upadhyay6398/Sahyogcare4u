@@ -1149,13 +1149,13 @@ function showForm(category) {
             <div class=col-md-6>
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" placeholder="Name" class="form-control" id="name" name="name" value="<?= $_POST['name'] ?>" required>
+                <input type="text" placeholder="Name" class="form-control" id="name" name="name" value="<?= $_POST['name'] ?? '' ?>" required>
               </div>
             </div>
             <div class=col-md-6>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" placeholder="Email" class="form-control" id="email" name="email" value="<?= $_POST['email'] ?>" required>
+                <input type="email" placeholder="Email" class="form-control" id="email" name="email" value="<?= $_POST['email'] ?? '' ?>" required>
               </div>
             </div>
           </div>
@@ -1164,7 +1164,7 @@ function showForm(category) {
 
               <div class="form-group">
                 <label for="phone">Mobile No.</label>
-                <input type="tel" placeholder="Mobile No." class="form-control" id="phone" name="phone" value="<?= $_POST['phone'] ?>" inputmode="numeric"  
+                <input type="tel" placeholder="Mobile No." class="form-control" id="phone" name="phone" value="<?= $_POST['phone'] ?? '' ?>" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern="^[6-9]\d{9}$"
        data-parsley-pattern-message="Please enter a valid phone number starting with 6 to 9 and 10 digits long"
@@ -1181,14 +1181,14 @@ function showForm(category) {
                 <label for="category">Fundraiser Segments: <span class="required-field"></span></label>
                 <select class="form-control" id="category" name="category" onchange="showForm(this.value)" required>
                   <option value="">Select Category</option>
-                  <option value="category1" <?= ($_POST['category'] == 'category1' ? 'selected="selected"' : '') ?>>Medical</option>
-                  <option value="category2" <?= ($_POST['category'] == 'category2' ? 'selected="selected"' : '') ?>>Disability</option>
-                  <option value="category3" <?= ($_POST['category'] == 'category3' ? 'selected="selected"' : '') ?>>Sanitary Napkin</option>
-                  <option value="category4" <?= ($_POST['category'] == 'category4' ? 'selected="selected"' : '') ?>>Sex Worker</option>
-                  <option value="category5" <?= ($_POST['category'] == 'category5' ? 'selected="selected"' : '') ?>>Old Age Home</option>
-                  <option value="category6" <?= ($_POST['category'] == 'category6' ? 'selected="selected"' : '') ?>>Natural Calamity</option>
-                  <option value="category7" <?= ($_POST['category'] == 'category7' ? 'selected="selected"' : '') ?>>Education</option>
-               <option value="category8" <?= ($_POST['category'] == 'category8' ? 'selected="selected"' : '') ?>>Any Other Project</option>
+                  <option value="category1" <?= (($_POST['category'] ?? '') == 'category1' ? 'selected="selected"' : '') ?>>Medical</option>
+                  <option value="category2" <?= (($_POST['category'] ?? '') == 'category2' ? 'selected="selected"' : '') ?>>Disability</option>
+                  <option value="category3" <?= (($_POST['category'] ?? '') == 'category3' ? 'selected="selected"' : '') ?>>Sanitary Napkin</option>
+                  <option value="category4" <?= (($_POST['category'] ?? '') == 'category4' ? 'selected="selected"' : '') ?>>Sex Worker</option>
+                  <option value="category5" <?= (($_POST['category'] ?? '') == 'category5' ? 'selected="selected"' : '') ?>>Old Age Home</option>
+                  <option value="category6" <?= (($_POST['category'] ?? '') == 'category6' ? 'selected="selected"' : '') ?>>Natural Calamity</option>
+                  <option value="category7" <?= (($_POST['category'] ?? '') == 'category7' ? 'selected="selected"' : '') ?>>Education</option>
+               <option value="category8" <?= (($_POST['category'] ?? '') == 'category8' ? 'selected="selected"' : '') ?>>Any Other Project</option>
                   
                   
                 </select>
@@ -1200,13 +1200,13 @@ function showForm(category) {
             <div class=col-md-6>
               <div class="form-group">
                 <label for="address">Address</label>
-                <input type="text" placeholder="Address" class="form-control" id="address" name="address" value="<?= $_POST['address'] ?>" required>
+                <input type="text" placeholder="Address" class="form-control" id="address" name="address" value="<?= $_POST['address'] ?? '' ?>" required>
               </div>
             </div>
             <div class=col-md-6>
               <div class="form-group">
                 <label for="pincode">Pincode</label>
-                <input type="text" placeholder="Pincode" class="form-control" id="pincode" name="pincode" value="<?= $_POST['pincode'] ?>" inputmode="numeric"  
+                <input type="text" placeholder="Pincode" class="form-control" id="pincode" name="pincode" value="<?= $_POST['pincode'] ?? '' ?>" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Pin Code starting"
        
@@ -1231,20 +1231,20 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="p_name">Patient Name</label>
-                    <input type="text" class="form-control" id="p_name" name="p_name" value="<?= $_POST['p_name'] ?>" placeholder="Enter Patient Name">
+                    <input type="text" class="form-control" id="p_name" name="p_name" value="<?= $_POST['p_name'] ?? '' ?>" placeholder="Enter Patient Name">
                  
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="med_ailment">Ailment</label>
-                    <input type="text" class="form-control" id="med_ailment" name="med_ailment" value="<?= $_POST['med_ailment'] ?>" placeholder="Enter Ailment">
+                    <input type="text" class="form-control" id="med_ailment" name="med_ailment" value="<?= $_POST['med_ailment'] ?? '' ?>" placeholder="Enter Ailment">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="med_dob">Date Of Birth</label>
-                    <input type="date" class="form-control" id="med_dob" name="med_dob" value="<?= $_POST['med_dob'] ?>" placeholder="Select Date of Birth">
+                    <input type="date" class="form-control" id="med_dob" name="med_dob" value="<?= $_POST['med_dob'] ?? '' ?>" placeholder="Select Date of Birth">
                   </div>
                 </div>
               </div>
@@ -1252,13 +1252,13 @@ function showForm(category) {
                 <div class=col-md-6>
                   <div class="form-group">
                     <label for="med_address">Address</label>
-                    <input type="text" placeholder="Address" class="form-control" id="med_address" value="<?= $_POST['med_address'] ?>" name="med_address">
+                    <input type="text" placeholder="Address" class="form-control" id="med_address" value="<?= $_POST['med_address'] ?? '' ?>" name="med_address">
                   </div>
                 </div>
                 <div class=col-md-6>
                   <div class="form-group">
                     <label for="med_pincode">Pincode</label>
-                    <input type="text" placeholder="Pincode" class="form-control" id="med_pincode" value="<?= $_POST['med_pincode'] ?>" name="med_pincode" inputmode="numeric"  
+                    <input type="text" placeholder="Pincode" class="form-control" id="med_pincode" value="<?= $_POST['med_pincode'] ?? '' ?>" name="med_pincode" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Pin Code starting"
 
@@ -1287,7 +1287,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="amount">Amount Required</label>
-                    <input type="text" class="form-control" id="med_amount" name="med_amount" value="<?= $_POST['med_amount'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="med_amount" name="med_amount" value="<?= $_POST['med_amount'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount"
      
@@ -1305,19 +1305,19 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="target">Targeted Date</label>
-                    <input type="date" class="form-control" id="med_target" name="med_target" value="<?= $_POST['med_target'] ?>" placeholder="Select Targeted Date">
+                    <input type="date" class="form-control" id="med_target" name="med_target" value="<?= $_POST['med_target'] ?? '' ?>" placeholder="Select Targeted Date">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="h_name">Hospital Name</label>
-                    <input type="text" class="form-control" id="h_name" name="h_name" value="<?= $_POST['h_name'] ?>" placeholder="Enter Hospital Name">
+                    <input type="text" class="form-control" id="h_name" name="h_name" value="<?= $_POST['h_name'] ?? '' ?>" placeholder="Enter Hospital Name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="h_address">Hospital Address</label>
-                    <input type="text" class="form-control" id="h_address" name="h_address" value="<?= $_POST['h_address'] ?>" placeholder="Enter Hospital Address">
+                    <input type="text" class="form-control" id="h_address" name="h_address" value="<?= $_POST['h_address'] ?? '' ?>" placeholder="Enter Hospital Address">
                   </div>
                 </div>
               </div>
@@ -1325,7 +1325,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="lbel">Description :</label>
-                    <textarea rows="3" class="area form-control" id="patient_description" value="<?= $_POST['patient_description'] ?>" name="patient_description" placeholder="Enter Description"><?= (isset($_POST['patient_description']) ? $_POST['patient_description'] : '') ?></textarea>
+                    <textarea rows="3" class="area form-control" id="patient_description" name="patient_description" placeholder="Enter Description"><?= $_POST['patient_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1346,19 +1346,19 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="med_name">Name (Aadhar Name)</label>
-                    <input type="text" class="form-control" id="med_name" name="med_name" value="<?= $_POST['med_name'] ?>" placeholder="Enter Aadhar Name">
+                    <input type="text" class="form-control" id="med_name" name="med_name" value="<?= $_POST['med_name'] ?? '' ?>" placeholder="Enter Aadhar Name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_ailment">Ailment</label>
-                    <input type="text" class="form-control" id="med_ailment" name="dis_ailment" value="<?= $_POST['dis_ailment'] ?>" placeholder="Enter Ailment">
+                    <input type="text" class="form-control" id="med_ailment" name="dis_ailment" value="<?= $_POST['dis_ailment'] ?? '' ?>" placeholder="Enter Ailment">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_percentage">Disability Percentage</label>
-                    <input type="text" class="form-control" id="dis_percentage" name="dis_percentage" value="<?= $_POST['dis_percentage'] ?>" placeholder="Enter Disability Percentage" inputmode="numeric"  
+                    <input type="text" class="form-control" id="dis_percentage" name="dis_percentage" value="<?= $_POST['dis_percentage'] ?? '' ?>" placeholder="Enter Disability Percentage" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Disability Percentage"
      
@@ -1374,7 +1374,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_age">Age</label>
-                    <input type="text" class="form-control" id="med_dob" value="<?= $_POST['med_dob'] ?>" name="med_dob" placeholder="Enter Age" 
+                    <input type="text" class="form-control" id="med_dob" value="<?= $_POST['med_dob'] ?? '' ?>" name="med_dob" placeholder="Enter Age" 
       >
         <p>Only numeric values allowed</p>
                   </div>
@@ -1382,7 +1382,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_income">Annual Income</label>
-                    <input type="text" class="form-control" id="dis_income" value="<?= $_POST['dis_income'] ?>" name="dis_income" placeholder="Enter Annual Income" inputmode="numeric"  
+                    <input type="text" class="form-control" id="dis_income" value="<?= $_POST['dis_income'] ?? '' ?>" name="dis_income" placeholder="Enter Annual Income" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Anual Income"
      
@@ -1396,7 +1396,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_amount_required">Amount Required</label>
-                    <input type="text" class="form-control" id="dis_amount_required" name="dis_amount_required" value="<?= $_POST['dis_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="dis_amount_required" name="dis_amount_required" value="<?= $_POST['dis_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount"
      
@@ -1419,7 +1419,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_pincode">Pincode</label>
-                    <input type="text" class="form-control" id="dis_pincode" name="dis_pincode" value="<?= $_POST['dis_pincode'] ?>" placeholder="Enter Pincode" inputmode="numeric"  
+                    <input type="text" class="form-control" id="dis_pincode" name="dis_pincode" value="<?= $_POST['dis_pincode'] ?? '' ?>" placeholder="Enter Pincode" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount"
      
@@ -1432,7 +1432,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="dis_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="dis_target_date" name="dis_target_date" value="<?= $_POST['dis_target_date'] ?>" placeholder="mm/dd/yyyy">
+                    <input type="date" class="form-control" id="dis_target_date" name="dis_target_date" value="<?= $_POST['dis_target_date'] ?? '' ?>" placeholder="mm/dd/yyyy">
                   </div>
                 </div>
               </div>
@@ -1440,7 +1440,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="dis_address">Address</label>
-                    <input type="text" class="form-control" id="dis_address" name="dis_address" value="<?= $_POST['dis_address'] ?>" placeholder="Enter Address">
+                    <input type="text" class="form-control" id="dis_address" name="dis_address" value="<?= $_POST['dis_address'] ?? '' ?>" placeholder="Enter Address">
                   </div>
                 </div>
               </div>
@@ -1448,7 +1448,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="label">Description</label>
-                    <textarea rows="3" class="area form-control" id="dis_description" name="dis_description" value="<?= $_POST['dis_description'] ?>" placeholder="Enter Description"></textarea>
+                    <textarea rows="3" class="area form-control" id="dis_description" name="dis_description" placeholder="Enter Description"><?= $_POST['dis_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1468,7 +1468,7 @@ function showForm(category) {
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="sn_beneficiary">Number of Beneficiaries</label>
-                  <input type="text" class="form-control" id="sn_beneficiary" name="sn_beneficiary" value="<?= $_POST['sn_beneficiary'] ?>" placeholder="Enter Number of Beneficiaries" inputmode="numeric"  
+                  <input type="text" class="form-control" id="sn_beneficiary" name="sn_beneficiary" value="<?= $_POST['sn_beneficiary'] ?? '' ?>" placeholder="Enter Number of Beneficiaries" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Beneficiaries"
      
@@ -1482,7 +1482,7 @@ function showForm(category) {
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="sn_total_napkin">Total Number of Napkins Required</label>
-                  <input type="text" class="form-control" id="sn_total_napkin" name="sn_total_napkin" value="<?= $_POST['sn_total_napkin'] ?>" placeholder="Enter Total Number of Napkins Required" inputmode="numeric"  
+                  <input type="text" class="form-control" id="sn_total_napkin" name="sn_total_napkin" value="<?= $_POST['sn_total_napkin'] ?? '' ?>" placeholder="Enter Total Number of Napkins Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Napkings Required"
      
@@ -1505,7 +1505,7 @@ function showForm(category) {
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="sn_amount_required">Amount Required</label>
-                  <input type="text" class="form-control" id="sn_amount_required" name="sn_amount_required" value="<?= $_POST['sn_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                  <input type="text" class="form-control" id="sn_amount_required" name="sn_amount_required" value="<?= $_POST['sn_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount"
      
@@ -1519,7 +1519,7 @@ function showForm(category) {
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="sn_target_date">Targeted Date</label>
-                  <input type="date" class="form-control" id="sn_target_date" name="sn_target_date" value="<?= $_POST['sn_target_date'] ?>" placeholder="Select Targeted Date">
+                  <input type="date" class="form-control" id="sn_target_date" name="sn_target_date" value="<?= $_POST['sn_target_date'] ?? '' ?>" placeholder="Select Targeted Date">
                 </div>
               </div>
             </div>
@@ -1527,7 +1527,7 @@ function showForm(category) {
               <div class="col-md-12">
                 <div class="form-group">
                   <label class="label">Description</label>
-                  <textarea rows="3" class="area form-control" id="sn_description" name="sn_description" value="<?= $_POST['sn_description'] ?>" placeholder="Enter Description"></textarea>
+                  <textarea rows="3" class="area form-control" id="sn_description" name="sn_description" placeholder="Enter Description"><?= $_POST['sn_description'] ?? '' ?></textarea>
                 </div>
               </div>
             </div>
@@ -1545,19 +1545,19 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_name">Name (Aadhar Name)</label>
-                    <input type="text" class="form-control" id="sw_name" name="sw_name" value="<?= $_POST['sw_name'] ?>" placeholder="Enter Aadhar Name">
+                    <input type="text" class="form-control" id="sw_name" name="sw_name" value="<?= $_POST['sw_name'] ?? '' ?>" placeholder="Enter Aadhar Name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_address">Address</label>
-                    <input type="text" class="form-control" id="sw_address" name="sw_address" value="<?= $_POST['sw_address'] ?>" placeholder="Enter Address">
+                    <input type="text" class="form-control" id="sw_address" name="sw_address" value="<?= $_POST['sw_address'] ?? '' ?>" placeholder="Enter Address">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_pincode">Pincode</label>
-                    <input type="text" class="form-control" id="sw_pincode" name="sw_pincode" value="<?= $_POST['sw_pincode'] ?>" placeholder="Enter Pincode" inputmode="numeric"  
+                    <input type="text" class="form-control" id="sw_pincode" name="sw_pincode" value="<?= $_POST['sw_pincode'] ?? '' ?>" placeholder="Enter Pincode" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Pincode"
      
@@ -1572,7 +1572,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_dependents">Number of Dependents</label>
-                    <input type="text" class="form-control" id="sw_dependents" name="sw_dependents" value="<?= $_POST['sw_dependents'] ?>" placeholder="Enter Number of Dependents" inputmode="numeric"  
+                    <input type="text" class="form-control" id="sw_dependents" name="sw_dependents" value="<?= $_POST['sw_dependents'] ?? '' ?>" placeholder="Enter Number of Dependents" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Dependents"
      
@@ -1586,13 +1586,13 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_requirements">Requirements (Ration)</label>
-                    <input type="text" class="form-control" id="sw_requirements" name="sw_requirements" value="<?= $_POST['sw_requirements'] ?>" placeholder="Enter Requirements (Ration)">
+                    <input type="text" class="form-control" id="sw_requirements" name="sw_requirements" value="<?= $_POST['sw_requirements'] ?? '' ?>" placeholder="Enter Requirements (Ration)">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="sw_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="sw_target_date" name="sw_target_date" value="<?= $_POST['sw_target_date'] ?>" placeholder="Select Targeted Date">
+                    <input type="date" class="form-control" id="sw_target_date" name="sw_target_date" value="<?= $_POST['sw_target_date'] ?? '' ?>" placeholder="Select Targeted Date">
                   </div>
                 </div>
               </div>
@@ -1600,7 +1600,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="label">Description</label>
-                    <textarea rows="3" class="area form-control" id="sw_description" name="sw_description" placeholder="Enter Description"><?= $_POST['sw_target_date'] ?></textarea>
+                    <textarea rows="3" class="area form-control" id="sw_description" name="sw_description" placeholder="Enter Description"><?= $_POST['sw_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1621,7 +1621,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="oah_senior_citizens">Number of Senior Citizens</label>
-                    <input type="text" class="form-control" id="oah_senior_citizens" name="oah_senior_citizens" value="<?= $_POST['oah_senior_citizens'] ?>" placeholder="Enter Number of Senior Citizens" inputmode="numeric"  
+                    <input type="text" class="form-control" id="oah_senior_citizens" name="oah_senior_citizens" value="<?= $_POST['oah_senior_citizens'] ?? '' ?>" placeholder="Enter Number of Senior Citizens" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a Senior Citizens"
      
@@ -1635,7 +1635,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="oah_monthly_expense">Monthly Expense/person</label>
-                    <input type="text" class="form-control" id="oah_monthly_expense" name="oah_monthly_expense" value="<?= $_POST['oah_monthly_expense'] ?>" placeholder="Enter Monthly Expense per Person" inputmode="numeric"  
+                    <input type="text" class="form-control" id="oah_monthly_expense" name="oah_monthly_expense" value="<?= $_POST['oah_monthly_expense'] ?? '' ?>" placeholder="Enter Monthly Expense per Person" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a Monthly Expense/Person"
      
@@ -1649,7 +1649,7 @@ function showForm(category) {
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="oah_male">Male</label>
-                    <input type="text" class="form-control" id="oah_male" name="oah_male" value="<?= $_POST['oah_male'] ?>" placeholder="Enter Number of Male Senior Citizens" inputmode="numeric"  
+                    <input type="text" class="form-control" id="oah_male" name="oah_male" value="<?= $_POST['oah_male'] ?? '' ?>" placeholder="Enter Number of Male Senior Citizens" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a Valid Male"
      
@@ -1663,7 +1663,7 @@ function showForm(category) {
                 <div class="col-md-2">
                   <div class="form-group">
                     <label for="oah_female">Female</label>
-                    <input type="text" class="form-control" id="oah_female" name="oah_female" value="<?= $_POST['oah_female'] ?>" placeholder="Enter Number of Female Senior Citizens" inputmode="numeric"  
+                    <input type="text" class="form-control" id="oah_female" name="oah_female" value="<?= $_POST['oah_female'] ?? '' ?>" placeholder="Enter Number of Female Senior Citizens" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Female"
      
@@ -1686,7 +1686,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="oah_amount_required">Amount Required</label>
-                    <input type="text" class="form-control" id="oah_amount_required" name="oah_amount_required" value="<?= $_POST['oah_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="oah_amount_required" name="oah_amount_required" value="<?= $_POST['oah_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Required Amount"
      
@@ -1700,7 +1700,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="oah_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="oah_target_date" name="oah_target_date" value="<?= $_POST['oah_target_date'] ?>" placeholder="Select Targeted Date">
+                    <input type="date" class="form-control" id="oah_target_date" name="oah_target_date" value="<?= $_POST['oah_target_date'] ?? '' ?>" placeholder="Select Targeted Date">
                   </div>
                 </div>
               </div>
@@ -1708,7 +1708,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="label">Description</label>
-                    <textarea rows="3" class="area form-control" id="oah_description" name="oah_description" placeholder="Enter Description"><?= $_POST['oah_description'] ?></textarea>
+                    <textarea rows="3" class="area form-control" id="oah_description" name="oah_description" placeholder="Enter Description"><?= $_POST['oah_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1729,19 +1729,19 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_name">Name (Aadhar Name)</label>
-                    <input type="text" class="form-control" id="nc_name" name="nc_name" value="<?= $_POST['nc_name'] ?>" placeholder="Enter Aadhar Name">
+                    <input type="text" class="form-control" id="nc_name" name="nc_name" value="<?= $_POST['nc_name'] ?? '' ?>" placeholder="Enter Aadhar Name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_calamity_type">Calamity type</label>
-                    <input type="text" class="form-control" id="nc_calamity_type" name="nc_calamity_type" value="<?= $_POST['nc_calamity_type'] ?>" placeholder="Enter Calamity Type">
+                    <input type="text" class="form-control" id="nc_calamity_type" name="nc_calamity_type" value="<?= $_POST['nc_calamity_type'] ?? '' ?>" placeholder="Enter Calamity Type">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_age">Age</label>
-                    <input type="text" class="form-control" id="nc_age" name="nc_age" value="<?= $_POST['nc_age'] ?>" placeholder="Enter Age" 
+                    <input type="text" class="form-control" id="nc_age" name="nc_age" value="<?= $_POST['nc_age'] ?? '' ?>" placeholder="Enter Age" 
        >
        <p>Only numeric values allowed</p>
                   </div>
@@ -1751,7 +1751,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_income">Annual Income</label>
-                    <input type="text" class="form-control" id="nc_income" name="nc_income" value="<?= $_POST['nc_income'] ?>" placeholder="Enter Annual Income" inputmode="numeric"  
+                    <input type="text" class="form-control" id="nc_income" name="nc_income" value="<?= $_POST['nc_income'] ?? '' ?>" placeholder="Enter Annual Income" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amual Income"
      
@@ -1765,13 +1765,13 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_address">Address</label>
-                    <input type="text" class="form-control" id="nc_address" name="nc_address" value="<?= $_POST['nc_address'] ?>" placeholder="Enter Address">
+                    <input type="text" class="form-control" id="nc_address" name="nc_address" value="<?= $_POST['nc_address'] ?? '' ?>" placeholder="Enter Address">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_family_members">Number of Family Members</label>
-                    <input type="text" class="form-control" id="nc_family_members" name="nc_family_members" value="<?= $_POST['nc_family_members'] ?>" placeholder="Enter Number of Family Members" inputmode="numeric"  
+                    <input type="text" class="form-control" id="nc_family_members" name="nc_family_members" value="<?= $_POST['nc_family_members'] ?? '' ?>" placeholder="Enter Number of Family Members" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Family Members"
      
@@ -1787,7 +1787,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_amount_required">Amount Required</label>
-                    <input type="text" class="form-control" id="nc_amount_required" name="nc_amount_required" value="<?= $_POST['nc_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="nc_amount_required" name="nc_amount_required" value="<?= $_POST['nc_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount Required"
      
@@ -1808,7 +1808,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="nc_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="nc_target_date" name="nc_target_date" value="<?= $_POST['nc_target_date'] ?>" placeholder="Select Targeted Date">
+                    <input type="date" class="form-control" id="nc_target_date" name="nc_target_date" value="<?= $_POST['nc_target_date'] ?? '' ?>" placeholder="Select Targeted Date">
                   </div>
                 </div>
               </div>
@@ -1816,7 +1816,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="label">Description (Overview of Calamity)</label>
-                    <textarea rows="3" class="area form-control" id="nc_description" name="nc_description" placeholder="Enter Description"><?= $_POST['nc_target_date'] ?></textarea>
+                    <textarea rows="3" class="area form-control" id="nc_description" name="nc_description" placeholder="Enter Description"><?= $_POST['nc_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1837,7 +1837,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="edu_total_students">Total Number of Students</label>
-                    <input type="text" class="form-control" id="edu_total_students" name="edu_total_students" value="<?= $_POST['edu_total_students'] ?>" placeholder="Enter Total Number of Students" inputmode="numeric"  
+                    <input type="text" class="form-control" id="edu_total_students" name="edu_total_students" value="<?= $_POST['edu_total_students'] ?? '' ?>" placeholder="Enter Total Number of Students" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Number of Students"
      
@@ -1851,7 +1851,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="edu_age_group">Age Group</label>
-                    <input type="text" class="form-control" id="edu_age_group" name="edu_age_group" value="<?= $_POST['edu_age_group'] ?>" placeholder="Enter Age Group" 
+                    <input type="text" class="form-control" id="edu_age_group" name="edu_age_group" value="<?= $_POST['edu_age_group'] ?? '' ?>" placeholder="Enter Age Group" 
       >
        <p>Only numeric values allowed</p>
                   </div>
@@ -1859,7 +1859,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="edu_project_name">Name of the Project</label>
-                    <input type="text" class="form-control" id="edu_project_name" name="edu_project_name" value="<?= $_POST['edu_project_name'] ?>" placeholder="Enter Name of the Project" >
+                    <input type="text" class="form-control" id="edu_project_name" name="edu_project_name" value="<?= $_POST['edu_project_name'] ?? '' ?>" placeholder="Enter Name of the Project" >
                   </div>
                 </div>
               </div>
@@ -1867,7 +1867,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="edu_area">Area</label>
-                    <input type="text" class="form-control" id="edu_area" name="edu_area" value="<?= $_POST['edu_area'] ?>" placeholder="Enter Area">
+                    <input type="text" class="form-control" id="edu_area" name="edu_area" value="<?= $_POST['edu_area'] ?? '' ?>" placeholder="Enter Area">
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -1880,7 +1880,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="edu_amount_required">Amount Required</label>
-                    <input type="text" class="form-control" id="edu_amount_required" name="edu_amount_required" value="<?= $_POST['edu_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="edu_amount_required" name="edu_amount_required" value="<?= $_POST['edu_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount Required"
      
@@ -1897,7 +1897,7 @@ function showForm(category) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="edu_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="edu_target_date" name="edu_target_date" value="<?= $_POST['edu_target_date'] ?>" placeholder="Select Targeted Date">
+                    <input type="date" class="form-control" id="edu_target_date" name="edu_target_date" value="<?= $_POST['edu_target_date'] ?? '' ?>" placeholder="Select Targeted Date">
                   </div>
                 </div>
               </div>
@@ -1905,7 +1905,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="label">Description</label>
-                    <textarea rows="3" class="area form-control" id="edu_description" name="edu_description" placeholder="Enter Description"><?= $_POST['edu_target_date'] ?></textarea>
+                    <textarea rows="3" class="area form-control" id="edu_description" name="edu_description" placeholder="Enter Description"><?= $_POST['edu_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
@@ -1926,13 +1926,13 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_name">Name (Aadhar Name)</label>
-                    <input type="text" class="form-control" id="aop_name" name="aop_name" value="<?= $_POST['aop_name'] ?>" placeholder="Enter Aadhar Name">
+                    <input type="text" class="form-control" id="aop_name" name="aop_name" value="<?= $_POST['aop_name'] ?? '' ?>" placeholder="Enter Aadhar Name">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_contact_number">Contact Number</label>
-                    <input type="text" class="form-control" id="aop_contact_number" name="aop_contact_number" value="<?= $_POST['aop_contact_number'] ?>" placeholder="Enter Contact Number" inputmode="numeric"  
+                    <input type="text" class="form-control" id="aop_contact_number" name="aop_contact_number" value="<?= $_POST['aop_contact_number'] ?? '' ?>" placeholder="Enter Contact Number" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Age"
      
@@ -1944,7 +1944,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_age">Age</label>
-                    <input type="text" class="form-control" id="aop_age" name="aop_age" value="<?= $_POST['aop_age'] ?>" placeholder="Enter Age" 
+                    <input type="text" class="form-control" id="aop_age" name="aop_age" value="<?= $_POST['aop_age'] ?? '' ?>" placeholder="Enter Age" 
       >
        <p>Only numeric values allowed</p>
                   </div>
@@ -1954,13 +1954,13 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_address">Address</label>
-                    <input type="text" class="form-control" id="aop_address" name="aop_address" value="<?= $_POST['aop_address'] ?>" placeholder="Enter Address">
+                    <input type="text" class="form-control" id="aop_address" name="aop_address" value="<?= $_POST['aop_address'] ?? '' ?>" placeholder="Enter Address">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_pincode">Pincode</label>
-                    <input type="text" class="form-control" id="aop_pincode" name="aop_pincode" value="<?= $_POST['aop_pincode'] ?>" placeholder="Enter Pincode" inputmode="numeric"  
+                    <input type="text" class="form-control" id="aop_pincode" name="aop_pincode" value="<?= $_POST['aop_pincode'] ?? '' ?>" placeholder="Enter Pincode" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Pincode"
      
@@ -1973,7 +1973,7 @@ function showForm(category) {
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="aop_project">Project</label>
-                    <input type="text" class="form-control" id="aop_project" name="aop_project" value="<?= $_POST['aop_project'] ?>" placeholder="Enter Project">
+                    <input type="text" class="form-control" id="aop_project" name="aop_project" value="<?= $_POST['aop_project'] ?? '' ?>" placeholder="Enter Project">
                   </div>
                 </div>
               </div>
@@ -1981,7 +1981,7 @@ function showForm(category) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="aop_amount_required">Amount Required</label>
-                    <input type="text" class="form-control" id="aop_amount_required" name="aop_amount_required" value="<?= $_POST['aop_amount_required'] ?>" placeholder="Enter Amount Required" inputmode="numeric"  
+                    <input type="text" class="form-control" id="aop_amount_required" name="aop_amount_required" value="<?= $_POST['aop_amount_required'] ?? '' ?>" placeholder="Enter Amount Required" inputmode="numeric"  
        data-parsley-type="digits"
        data-parsley-pattern-message="Please enter a valid Amount"
      
@@ -1995,7 +1995,7 @@ function showForm(category) {
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="aop_target_date">Targeted Date</label>
-                    <input type="date" class="form-control" id="aop_target_date" name="aop_target_date" value="<?= $_POST['aop_target_date'] ?>" placeholder="mm/dd/yyyy">
+                    <input type="date" class="form-control" id="aop_target_date" name="aop_target_date" value="<?= $_POST['aop_target_date'] ?? '' ?>" placeholder="mm/dd/yyyy">
                   </div>
                 </div>
               </div>
@@ -2003,7 +2003,7 @@ function showForm(category) {
                 <div class="col-md-12">
                   <div class="form-group">
                     <label class="lbel">Description</label>
-                    <textarea rows="3" class="area form-control" id="aop_description" name="aop_description" placeholder="Enter Description"><?= $_POST['aop_target_date'] ?></textarea>
+                    <textarea rows="3" class="area form-control" id="aop_description" name="aop_description" placeholder="Enter Description"><?= $_POST['aop_description'] ?? '' ?></textarea>
                   </div>
                 </div>
               </div>
